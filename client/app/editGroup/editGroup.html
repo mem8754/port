@@ -1,0 +1,47 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+    <div class="col-xs-12">
+        <h2>PORT - Modify a Group</h2>
+    </div>
+
+<div class="container">
+    <div class="col-xs-12">&nbsp;</div>
+    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+        <form class="form-horizontal" ng-submit="updateGroup()">
+            <!--             Form label and input field for group name input  -->
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-4 col-sm-4 col-md-3 col-lg-3 control-label">Group Name:</label>
+                    <div class="col-xs-8 col-sm-7 col-md-6 col-lg-5">
+                        <input type="text" class="form-control" ng-model="group.groupName">
+                    </div>
+                </div>
+            </div>
+            <!--             Form labels and input fields for group number input  -->
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-4 col-sm-4 col-md-3 col-lg-3 control-label">Group #:</label>
+                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-2">
+                        <input type="number" step="0.1" min="1" max="9.9" class="form-control col-xs-8" ng-model="group.groupNum">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-4 col-sm-4 col-md-3 col-lg-3 control-label">Index:</label>
+                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-2">
+                        <input type="number" step="1" min="1" max="6" class="form-control col-xs-8" ng-model="group.opsId">
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3"></div>
+                <div class="col-xs-4 col-sm-3 col-md-2 col-lg-1">
+                    <button type="submit" class="btn btn-default">Update</button>
+                </div>
+                <br/>
+            </div>
+            
+        </form>
+    </div>
+</div>

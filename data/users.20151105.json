@@ -1,0 +1,5 @@
+{"__v":0,"_id":{"$oid":"563a909c195e72712a197d05"},"admin":true,"editor":false,"email":"mmcbride@ena.com","firstName":"Mike","groupId":{"$oid":"563a906b195e72712a197d02"},"lastName":"McBride"}
+{"__v":0,"_id":{"$oid":"563a90de195e72712a197d06"},"admin":true,"editor":false,"email":"tguilyard@ena.com","firstName":"Terry","groupId":{"$oid":"563a8ffb195e72712a197cfb"},"lastName":"Guilyard"}
+{"__v":0,"_id":{"$oid":"563a90f5195e72712a197d07"},"editor":true,"email":"ayoders@ena.com","firstName":"Amanda","groupId":{"$oid":"563a8ffb195e72712a197cfb"},"lastName":"Yoders"}
+{"__v":0,"_id":{"$oid":"563a916b195e72712a197d08"},"editor":true,"email":"yabdelilah@ena.com","firstName":"Youssef","groupId":{"$oid":"563a8ffb195e72712a197cfb"},"lastName":"Abdelilah"}
+{"__v":0,"_id":{"$oid":"563a9190195e72712a197d09"},"editor":true,"email":"jtemple@ena.com","firstName":"Joe","groupId":{"$oid":"563a906b195e72712a197d02"},"lastName":"Temple"}

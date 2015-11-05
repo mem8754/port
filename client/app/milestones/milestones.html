@@ -1,0 +1,79 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+    <div  class="col-xs-12">
+        <h2>
+            <strong>PORT - Operational Readiness Milestones</strong> 
+        </h2>
+    </div>
+    <div class="col-xs-12">&nbsp;</div>
+    
+    <div class="col-xs-12">
+        <form class="form-horizontal">
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">Select Group:</label>
+                    <div class="col-xs-8">
+                        <select ng-model="groupId"
+                                ng-options="group._id as group.groupName for group in groups"
+                                ng-change="selectGroup()">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">Phase Filter (opt):</label>
+                    <div class="col-xs-6">
+                        <select ng-model="objectiveFilter.productPhase">
+                            <option value="Discovery">Discovery</option>
+                            <option value="Development">Development</option>
+                            <option value="Pilot">Pilot</option>
+                            <option value="Pre-Launch">Pre-Launch</option>
+                            <option value="Post-Launch">Post-Launch</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="col-xs-4">&nbsp;</div>
+        <div class="col-xs-4" ng-if="groupId">
+            <a class="btn btn-primary" href="/addMilestone/{{ groupId }}">
+                <span class="fa fa-plus" aria-hidden="true"></span>
+                &nbsp;Add a New Milestone
+            </a>
+        </div>
+        <div class="col-xs-12">&nbsp;</div>
+    </div>
+
+    <small>
+        <table class="table table-condensed table-bordered" ng-if="milestonesAvailable">
+            <thead>
+                <tr>
+                    <th>Phase</th>
+                    <th>Objective</th>
+                    <th>Milestone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="objective in objectives | filter:objectiveFilter | orderBy: 'objectiveSequence'">
+                     <td>{{ objective.productPhase }}</td>
+                    <td>{{ objective.phaseObjective }}</td>
+                    <td>
+                        <table class="table table condensed table-bordered">
+                            <tbody>
+                                <tr ng-repeat="milestone in objective.milestones | orderBy: 'milestoneSeq'">
+                                    <td>
+                                        <a href="/editMilestone/{{ milestone._id }}"><span class="fa fa-pencil"></span></a>
+                                    </td>
+                                    <td>{{ milestone.milestoneSeq }}</td>
+                                    <td>{{ milestone.objectiveMilestone }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </small>
+</div>

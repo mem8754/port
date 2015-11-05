@@ -1,0 +1,31 @@
+{ productPhase : "Discovery",  productPhaseNum : 0, phaseObjective : "Awareness of the product and underlying technology.", objectiveSequence : 1.01 }
+{ productPhase : "Discovery",  productPhaseNum : 0, phaseObjective : "Feedback to the product team on operational questions that team may have.", objectiveSequence : 1.02 }
+{ productPhase : "Discovery",  productPhaseNum : 0, phaseObjective : "Identification of preliminary operational considerations associated with the product as currently envisioned.", objectiveSequence : 1.03 }
+{ productPhase : "Development",  productPhaseNum : 1, phaseObjective : "High Level Deployment and Support Framework", objectiveSequence : 2.01 }
+{ productPhase : "Development",  productPhaseNum : 1, phaseObjective : "Support tools, equipment and logistics", objectiveSequence : 2.011 }
+{ productPhase : "Development",  productPhaseNum : 1, phaseObjective : "Internal Training Requirements Identified", objectiveSequence : 2.02 }
+{ productPhase : "Development",  productPhaseNum : 1, phaseObjective : "Outline for Per-Customer Deployment", objectiveSequence : 2.03 }
+{ productPhase : "Development",  productPhaseNum : 1, phaseObjective : "Work flows, data exchange, communications plan", objectiveSequence : 2.031 }
+{ productPhase : "Development",  productPhaseNum : 1, phaseObjective : "Necessary Skillsets for Deployment and Support Identified", objectiveSequence : 2.04 }
+{ productPhase : "Development",  productPhaseNum : 1, phaseObjective : "Skills, staffing plans", objectiveSequence : 2.041 }
+{ productPhase : "Development",  productPhaseNum : 1, phaseObjective : "Initial expectations on scope and scale of support required", objectiveSequence : 2.05 }
+{ productPhase : "Development",  productPhaseNum : 1, phaseObjective : "Incorporation of deployment considerations into product design / development", objectiveSequence : 2.06 }
+{ productPhase : "Pilot",  productPhaseNum : 2, phaseObjective : "Template Installation Plan (field ops), Implementation (Project) Plan (SI), and Support Plan (CTAC)", objectiveSequence : 3.01 }
+{ productPhase : "Pilot",  productPhaseNum : 2, phaseObjective : "Collection and analysis of product usage (who, how, how often, etc.) and troubleshooting statistics; identify specific “pain points” encountered", objectiveSequence : 3.02 }
+{ productPhase : "Pilot",  productPhaseNum : 2, phaseObjective : "Validation of specified hardware, identification of installation / support concerns for that hardware", objectiveSequence : 3.03 }
+{ productPhase : "Pilot",  productPhaseNum : 2, phaseObjective : "Refinement of staffing plans (skills, quantities, etc.) and training plans", objectiveSequence : 3.04 }
+{ productPhase : "Pilot",  productPhaseNum : 2, phaseObjective : "Development of template (customizable) project plan based on Pilot deployment experience", objectiveSequence : 3.05 }
+{ productPhase : "Pilot",  productPhaseNum : 2, phaseObjective : "Development of internal support documentation framework", objectiveSequence : 3.06 }
+{ productPhase : "Pre-Launch",  productPhaseNum : 3, phaseObjective : "  Implementation process finalized", objectiveSequence : 4.01 }
+{ productPhase : "Pre-Launch",  productPhaseNum : 3, phaseObjective : "  Tools configured, tested, and validated", objectiveSequence : 4.02 }
+{ productPhase : "Pre-Launch",  productPhaseNum : 3, phaseObjective : "  Support procedures and escalation path in place", objectiveSequence : 4.03 }
+{ productPhase : "Pre-Launch",  productPhaseNum : 3, phaseObjective : "  Standard customer communications and data questionnaires in place", objectiveSequence : 4.04 }
+{ productPhase : "Pre-Launch",  productPhaseNum : 3, phaseObjective : "  Approved template implementation plans on Wiki", objectiveSequence : 4.05 }
+{ productPhase : "Pre-Launch",  productPhaseNum : 3, phaseObjective : "  Staffing levels, required skill levels, staff training finalized", objectiveSequence : 4.06 }
+{ productPhase : "Pre-Launch",  productPhaseNum : 3, phaseObjective : "  Inventory and sparing model finalized for selected hardware", objectiveSequence : 4.07 }
+{ productPhase : "Pre-Launch",  productPhaseNum : 3, phaseObjective : "  Required info for Break/Fix communicated to CTAC", objectiveSequence : 4.08 }
+{ productPhase : "Pre-Launch",  productPhaseNum : 3, phaseObjective : "Product Owner to finalize service order mechanism", objectiveSequence : 4.09 }
+{ productPhase : "Pre-Launch",  productPhaseNum : 3, phaseObjective : "Affected groups to address roll-down impacts (e.g. Sales Order Form for SI)", objectiveSequence : 4.091 }
+{ productPhase : "Post-Launch",  productPhaseNum : 4, phaseObjective : "Refinement of support model and procedures by support groups", objectiveSequence : 5.01 }
+{ productPhase : "Post-Launch",  productPhaseNum : 4, phaseObjective : "Communication of any support gaps to Product Owner (between support groups, not within a single support group)", objectiveSequence : 5.02 }
+{ productPhase : "Post-Launch",  productPhaseNum : 4, phaseObjective : "Product Owner to drive resolution of the gap", objectiveSequence : 5.021 }

@@ -1,0 +1,76 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+    <div  class="col-xs-12">
+        <h2>
+            <strong>PORT - Operational Milestone Actions: {{ groupName }} Group</strong> 
+        </h2>
+    </div>
+    <div class="col-xs-12">&nbsp;</div>
+    <br/>
+    
+    <div class="col-xs-12">
+        <form class="form-horizontal">
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">Select Product:</label>
+                    <div class="col-xs-8">
+                        <select ng-model="productId"
+                                ng-options="product._id as product.productName for product in products"
+                                ng-change="refreshActions()">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">Phase Filter (opt):</label>
+                    <div class="col-xs-6">
+                        <select ng-model="objectiveFilter.productPhase">
+                            <option value="Discovery">Discovery</option>
+                            <option value="Development">Development</option>
+                            <option value="Pilot">Pilot</option>
+                            <option value="Pre-Launch">Pre-Launch</option>
+                            <option value="Post-Launch">Post-Launch</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <small>
+        <table class="table table-condensed table-bordered" ng-if="actionsRetrieved">
+            <thead>
+                <tr>
+                    <th>Phase</th>
+                    <th>Objective</th>
+                    <th>Milestone Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="objective in objectives | filter:objectiveFilter | orderBy: 'objectiveSequence'">
+                     <td>{{ objective.productPhase }}</td>
+                    <td>{{ objective.phaseObjective }}</td>
+                    <td>
+                        <table class="table table condensed table-bordered">
+                            <tbody>
+                                <tr ng-repeat="milestone in objective.milestones | orderBy: 'milestoneSeq'">
+                                    <td>{{ milestone.objectiveMilestone }}</td>
+                                    <td>
+                                        <form class="form-horizontal">
+                                            <select  ng-model="milestone.milestoneStatus"
+                                                     ng-options="stat.idx as stat.name for stat in statusValues"
+                                                     ng-change="updateActionStatus($parent.$index, $index, milestone.actionId)">
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </small>
+</div>
+

@@ -1,0 +1,31 @@
+{"_id":{"$oid":"563b1069296f1b22393a2883"},"objectiveSequence":1.01,"phaseObjective":"Awareness of the product and underlying technology.","productPhase":"Discovery","productPhaseNum":0}
+{"_id":{"$oid":"563b1083296f1b22393a2884"},"objectiveSequence":1.02,"phaseObjective":"Feedback to the product team on operational questions that team may have.","productPhase":"Discovery","productPhaseNum":0}
+{"_id":{"$oid":"563b1094296f1b22393a2885"},"objectiveSequence":1.03,"phaseObjective":"Identification of preliminary operational considerations associated with the product as currently envisioned.","productPhase":"Discovery","productPhaseNum":0}
+{"_id":{"$oid":"563b10b5296f1b22393a2886"},"objectiveSequence":2.01,"phaseObjective":"High Level Deployment and Support Framework","productPhase":"Development","productPhaseNum":1}
+{"_id":{"$oid":"563b10c1296f1b22393a2887"},"objectiveSequence":2.011,"phaseObjective":"Support tools, equipment and logistics","productPhase":"Development","productPhaseNum":1}
+{"_id":{"$oid":"563b10d1296f1b22393a2888"},"objectiveSequence":2.02,"phaseObjective":"Internal Training Requirements Identified","productPhase":"Development","productPhaseNum":1}
+{"_id":{"$oid":"563b10de296f1b22393a2889"},"objectiveSequence":2.03,"phaseObjective":"Outline for Per-Customer Deployment","productPhase":"Development","productPhaseNum":1}
+{"_id":{"$oid":"563b10ec296f1b22393a288a"},"objectiveSequence":2.031,"phaseObjective":"Work flows, data exchange, communications plan","productPhase":"Development","productPhaseNum":1}
+{"_id":{"$oid":"563b10fb296f1b22393a288b"},"objectiveSequence":2.04,"phaseObjective":"Necessary Skillsets for Deployment and Support Identified","productPhase":"Development","productPhaseNum":1}
+{"_id":{"$oid":"563b110a296f1b22393a288c"},"objectiveSequence":2.041,"phaseObjective":"Skills, staffing plans","productPhase":"Development","productPhaseNum":1}
+{"_id":{"$oid":"563b111f296f1b22393a288d"},"objectiveSequence":2.05,"phaseObjective":"Initial expectations on scope and scale of support required","productPhase":"Development","productPhaseNum":1}
+{"_id":{"$oid":"563b112d296f1b22393a288e"},"objectiveSequence":2.06,"phaseObjective":"Incorporation of deployment considerations into product design / development","productPhase":"Development","productPhaseNum":1}
+{"_id":{"$oid":"563b1142296f1b22393a288f"},"objectiveSequence":3.01,"phaseObjective":"Template Installation Plan (field ops), Implementation (Project) Plan (SI), and Support Plan (CTAC)","productPhase":"Pilot","productPhaseNum":2}
+{"_id":{"$oid":"563b1153296f1b22393a2890"},"objectiveSequence":3.02,"phaseObjective":"Collection and analysis of product usage (who, how, how often, etc.) and troubleshooting statistics; identify specific “pain points” encountered","productPhase":"Pilot","productPhaseNum":2}
+{"_id":{"$oid":"563b1160296f1b22393a2891"},"objectiveSequence":3.03,"phaseObjective":"Validation of specified hardware, identification of installation / support concerns for that hardware","productPhase":"Pilot","productPhaseNum":2}
+{"_id":{"$oid":"563b116e296f1b22393a2892"},"objectiveSequence":3.04,"phaseObjective":"Refinement of staffing plans (skills, quantities, etc.) and training plans","productPhase":"Pilot","productPhaseNum":2}
+{"_id":{"$oid":"563b1180296f1b22393a2893"},"objectiveSequence":3.05,"phaseObjective":"Development of template (customizable) project plan based on Pilot deployment experience","productPhase":"Pilot","productPhaseNum":2}
+{"_id":{"$oid":"563b1193296f1b22393a2894"},"objectiveSequence":3.06,"phaseObjective":"Development of internal support documentation framework","productPhase":"Pilot","productPhaseNum":2}
+{"_id":{"$oid":"563b11a3296f1b22393a2895"},"objectiveSequence":4.01,"phaseObjective":"  Implementation process finalized","productPhase":"Pre-Launch","productPhaseNum":3}
+{"_id":{"$oid":"563b11b6296f1b22393a2896"},"objectiveSequence":4.02,"phaseObjective":"  Tools configured, tested, and validated","productPhase":"Pre-Launch","productPhaseNum":3}
+{"_id":{"$oid":"563b11c4296f1b22393a2897"},"objectiveSequence":4.03,"phaseObjective":"  Support procedures and escalation path in place","productPhase":"Pre-Launch","productPhaseNum":3}
+{"_id":{"$oid":"563b11d8296f1b22393a2898"},"objectiveSequence":4.04,"phaseObjective":"  Standard customer communications and data questionnaires in place","productPhase":"Pre-Launch","productPhaseNum":3}
+{"_id":{"$oid":"563b11e6296f1b22393a2899"},"objectiveSequence":4.05,"phaseObjective":"  Approved template implementation plans on Wiki","productPhase":"Pre-Launch","productPhaseNum":3}
+{"_id":{"$oid":"563b11f5296f1b22393a289a"},"objectiveSequence":4.06,"phaseObjective":"  Staffing levels, required skill levels, staff training finalized","productPhase":"Pre-Launch","productPhaseNum":3}
+{"_id":{"$oid":"563b1203296f1b22393a289b"},"objectiveSequence":4.07,"phaseObjective":"  Inventory and sparing model finalized for selected hardware","productPhase":"Pre-Launch","productPhaseNum":3}
+{"_id":{"$oid":"563b1210296f1b22393a289c"},"objectiveSequence":4.08,"phaseObjective":"  Required info for Break/Fix communicated to CTAC","productPhase":"Pre-Launch","productPhaseNum":3}
+{"_id":{"$oid":"563b121d296f1b22393a289d"},"objectiveSequence":4.09,"phaseObjective":"Product Owner to finalize service order mechanism","productPhase":"Pre-Launch","productPhaseNum":3}
+{"_id":{"$oid":"563b1230296f1b22393a289e"},"objectiveSequence":4.091,"phaseObjective":"Affected groups to address roll-down impacts (e.g. Sales Order Form for SI)","productPhase":"Pre-Launch","productPhaseNum":3}
+{"_id":{"$oid":"563b123c296f1b22393a289f"},"objectiveSequence":5.01,"phaseObjective":"Refinement of support model and procedures by support groups","productPhase":"Post-Launch","productPhaseNum":4}
+{"_id":{"$oid":"563b124b296f1b22393a28a0"},"objectiveSequence":5.02,"phaseObjective":"Communication of any support gaps to Product Owner (between support groups, not within a single support group)","productPhase":"Post-Launch","productPhaseNum":4}
+{"_id":{"$oid":"563b125b296f1b22393a28a1"},"objectiveSequence":5.021,"phaseObjective":"Product Owner to drive resolution of the gap","productPhase":"Post-Launch","productPhaseNum":4}

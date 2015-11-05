@@ -1,0 +1,75 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="col-xs-12">
+    <h2>
+            PORT - Add a User
+    </h2>
+</div>
+
+<div class="container">
+    <div class="col-xs-12">
+        <form class="form-horizontal" ng-submit="addUser()">
+            <br />
+            <div class="row">
+                <div class="col-xs-3"></div>
+                <div>
+                    <button type="submit" class="btn btn-default">Add this User</button>
+                </div>
+                <br/>
+            </div>
+            <!--             Form label and input field for user email input  -->
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">User Email:</label>
+                    <div class="col-xs-8">
+                        <input type="email" class="form-control col-xs-8" ng-model="user.email">
+                    </div>
+                </div>
+            </div>
+            <!--             Form labels and input fields for user name input  -->
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">Last Name:</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control col-xs-8" ng-model="user.lastName">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">First Name:</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control col-xs-8" ng-model="user.firstName">
+                    </div>
+                </div>
+            </div>
+            <!--             Form label and input field for group name / ID -->
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">Group:</label>
+                    <div class="col-xs-8">
+                        <select ng-model="user.groupId"
+                                ng-options="group._id as group.groupName for group in groups">
+                        </select>
+                    </div>
+                 </div>
+            </div>
+            <!--             
+                    Form label and input checkboxes for authority fields 
+            -->
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">Authority:</label>
+                    <label class="col-xs-1 control-label">Editor:</label>
+                    <div class="col-xs-2">
+                        <input type="checkbox" class="form-control" ng-model="user.editor">
+                    </div>
+                    <label class="col-xs-1 control-label">Admin:</label>
+                    <div class="col-xs-2">
+                        <input type="checkbox" class="form-control" ng-model="user.admin">                         
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

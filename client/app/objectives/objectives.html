@@ -1,0 +1,71 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+    <div  class="col-xs-12">
+        <h2>
+            <strong>PORT - Operational Objectives</strong> ({{ objectives.length }})
+        </h2>
+    </div>
+    <div class="col-xs-12">&nbsp;</div>
+    <div class="col-xs-2">&nbsp;</div>
+    <div class="col-xs-2">
+        <a class="btn btn-large btn-default" href="/addObjective">
+            <span class="fa fa-plus" aria-hidden="true"></span>
+            &nbsp;Add an Objective
+        </a>
+    </div>
+    <div class="col-xs-12">&nbsp;</div>
+    <div class="col-xs-12">
+        <br/>
+        <table class="table table-condensed table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Seq&nbsp;
+                        <span ng-hide="oSortSequence">
+                            <span ng-click="doSort('objectiveSequence')" class="fa fa-sort"></span>
+                        </span>
+                        <span ng-show="oSortSequence">
+                            <span ng-click="doSort('objectiveSequence')" ng-show="oReverse" class="fa fa-sort-numeric-asc"></span>
+                            <span ng-click="doSort('objectiveSequence')" ng-hide="oReverse" class="fa fa-sort-numeric-desc"></span>
+                        </span>
+                    </th>
+                    <th>Product Phase&nbsp;
+                        <span ng-hide="oSortPhase">
+                            <span ng-click="doSort('productPhase')" class="fa fa-sort"></span>
+                        </span>
+                        <span ng-show="oSortPhase">
+                            <span ng-click="doSort('productPhase')" ng-show="oReverse" class="fa fa-sort-alpha-asc"></span>
+                            <span ng-click="doSort('productPhase')" ng-hide="oReverse" class="fa fa-sort-alpha-desc"></span>
+                        </span>
+                    </th>
+                    <th>Objective&nbsp;
+                        <span ng-hide="oSortObjective">
+                            <span ng-click="doSort('phaseObjective')" class="fa fa-sort"></span>
+                        </span>
+                        <span ng-show="oSortObjective">
+                            <span ng-click="doSort('phaseObjective')" ng-show="oReverse" class="fa fa-sort-alpha-asc"></span>
+                            <span ng-click="doSort('phaseObjective')" ng-hide="oReverse" class="fa fa-sort-alpha-desc"></span>
+                        </span>
+                    </th>
+                </tr>
+                    <td></td>
+                    <td></td>
+                    <td><input type="text" ng-model="objectiveFilter.productPhase" /></td>
+                    <td><input type="text" ng-model="objectiveFilter.phaseObjective" /></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="objective in objectives | filter:objectiveFilter | orderBy:oSortBy:oReverse">
+                    <td>
+                        <a href="/editObjective/{{ objective._id }}"><span class="fa fa-pencil"></span></a>
+                    </td>
+                    <td>{{ objective.objectiveSequence | number : 3 }}</td>
+                    <td>{{ objective.productPhase }}</td>
+                    <td>{{ objective.phaseObjective }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

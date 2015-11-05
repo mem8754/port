@@ -1,0 +1,35 @@
+{
+  "name": "post",
+  "version": "1.0.0",
+  "description": "ENA Product Operational Readiness Tracker",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mem8754/post.git"
+  },
+  "author": "Mike McBride",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mem8754/post/issues"
+  },
+  "dependencies": {
+    "angular": "^1.4.7",
+    "angular-cookies": "^1.4.7",
+    "angular-resource": "^1.4.7",
+    "angular-sanitize": "^1.4.7",
+    "angular-ui-router": "^0.2.15",
+    "body-parser": "^1.14.1",
+    "bootstrap": "^3.3.5",
+    "cookie-parser": "^1.4.0",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "jquery": "^2.1.4",
+    "lodash": "^3.10.1",
+    "method-override": "^2.3.5",
+    "mongoose": "^4.1.12"
+  },
+  "homepage": "https://github.com/mem8754/post#readme"
+}

@@ -1,0 +1,37 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="col-xs-12">
+    <h2>
+            PORT - Add a New User Group
+    </h2>
+</div>
+
+<div class="container">
+    <div class="col-xs-12">
+        <form class="form-horizontal" ng-submit="addGroup()">
+            <div class="row">
+                <div class="col-xs-3">&nbsp;</div>
+                <div><button type="submit" class="btn btn-default">Add this Group</button></div>
+                <br/>
+            </div>
+            <!--             Form label and input field for Group Name input  -->
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">Group Name:</label>
+                    <div class="col-xs-6">
+                        <input type="text" class="form-control col-xs-8" ng-model="group.groupName">
+                    </div>
+                </div>
+            </div>
+            <!--             Form labels and input fields for user name input  -->
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">Group Number:</label>
+                    <div class="col-xs-4">
+                        <input type="number" min="1" max="20" step="0.1" class="form-control" ng-model="group.groupNum">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

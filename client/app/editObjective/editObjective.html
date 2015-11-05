@@ -1,0 +1,60 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="col-xs-12">
+    <h2>
+            PORT - Edit an Operational Readiness Objective: {{objective._id}}
+    </h2>
+</div>
+
+<div class="container">
+    <div class="col-xs-12">
+        <form class="form-horizontal" ng-submit="updateObjective()">
+            <div class="row">
+            <br />
+            <div class="row">
+                <div class="col-xs-3"></div>
+                <div><button type="submit" class="btn btn-default">Update this Objective</button></div>
+                <br/>
+            </div>
+            <!--
+                    Form label and input field for product phase input
+              -->
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">Product Phase:</label>
+                    <div class="col-xs-4">
+                        <select ng-model="objective.productPhase">
+                            <option value="Discovery">Discovery</option>
+                            <option value="Development">Development</option>
+                            <option value="Pilot">Pilot</option>
+                            <option value="Pre-Launch">Pre-Launch</option>
+                            <option value="Post-Launch">Post-Launch</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!--
+                    Form labels and input fields for new Objective input
+              -->
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">Objective:</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control col-xs-8" ng-model="objective.phaseObjective">
+                    </div>
+                </div>
+            </div>
+            <!--
+                    Form labels and input fields for new objective's Sequence input
+              -->
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">Sequence:</label>
+                    <div class="col-xs-2">
+                        <input type="number" min="0" max="1000" step="0.001" class="form-control col-xs-8" ng-model="objective.objectiveSequence">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

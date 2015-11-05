@@ -1,0 +1,86 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+    <div  class="col-xs-12">
+        <h2>
+            <strong>PORT - Authorized Users (count = {{ users.length }})</strong>
+        </h2>
+    </div>
+    <div class="col-xs-12">&nbsp;</div>
+    <div class="col-xs-2">&nbsp;</div>
+    <div class="col-xs-4">
+        <a class="btn btn-default" href="/addUser">
+            <span class="fa fa-plus" aria-hidden="true"></span>
+            &nbsp;Add User
+        </a>
+    </div>
+    <div class="col-xs-6">&nbsp;</div>
+    <div class="col-xs-12">
+        <br/>
+        <table class="table table-condensed table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                       <span>Email&nbsp;</span>
+                        <span ng-show="uSortEmail">
+                            <span ng-click="doSort('email')" ng-show="uReverse" class="fa fa-sort-alpha-asc"></span>
+                            <span ng-click="doSort('email')" ng-hide="uReverse" class="fa fa-sort-alpha-desc"></span>
+                        </span>
+                        <span ng-hide="uSortEmail">
+                            <span ng-click="doSort('email')" class="fa fa-sort"></span>
+                        </span>
+                    </th>
+                    <th>
+                        <span>Last Name&nbsp;</span>
+                        <span ng-show="uSortLN">
+                            <span ng-click="doSort('lastName')" ng-show="uReverse" class="fa fa-sort-alpha-asc"></span>
+                            <span ng-click="doSort('lastName')" ng-hide="uReverse" class="fa fa-sort-alpha-desc"></span>
+                        </span>
+                        <span ng-hide="uSortLN">
+                            <span ng-click="doSort('lastName')" class="fa fa-sort"></span>
+                        </span>
+                    </th>
+                    <th>
+                       <span>First Name&nbsp;</span>
+                        <span ng-show="uSortFN">
+                            <span ng-click="doSort('firstName')" ng-show="uReverse" class="fa fa-sort-alpha-asc"></span>
+                            <span ng-click="doSort('firstName')" ng-hide="uReverse" class="fa fa-sort-alpha-desc"></span>
+                        </span>
+                        <span ng-hide="uSortFN">
+                            <span ng-click="doSort('firstName')" class="fa fa-sort"></span>
+                        </span>
+                    </th>
+                    <th>
+                       <span>Group&nbsp;</span>
+                        <span ng-show="uSortGroup">
+                            <span ng-click="doSort('groupName')" ng-show="uReverse" class="fa fa-sort-alpha-asc"></span>
+                            <span ng-click="doSort('groupName')" ng-hide="uReverse" class="fa fa-sort-alpha-desc"></span>
+                        </span>
+                        <span ng-hide="uSortGroup">
+                            <span ng-click="doSort('groupName')" class="fa fa-sort"></span>
+                        </span>
+                    </th>
+                    <th>Editor</th>
+                    <th>Admin</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users | orderBy:uSortBy:uReverse">
+                    <td>
+                        <a href="/editUser/{{ user._id }}"><span class="fa fa-pencil"></span></a>
+                    </td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.lastName }}</td>
+                    <td>{{ user.firstName }}</td>
+                    <td>{{ user.groupName }}</td>
+                    <td ng-show="user.editor"><span class="fa fa-check"></span></td>
+                    <td ng-hide="user.editor">&nbsp;</td>
+                    <td ng-show="user.admin"><span class="fa fa-check"></span></td>
+                    <td ng-hide="user.admin">&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
