@@ -5,69 +5,128 @@
     'use strict';
     var ProductSummaryReportCtrl = function ($scope, $rootScope, $state, $log, $window, productsFactory, actionsFactory, usersFactory) {
 
-        $scope.pSortBy = 'productName';
+        $scope.pSortBy = 'businessRank';
         $scope.pReverse = false;
-        $scope.pSortName = true;
+        $scope.pSortName = false;
         $scope.pSortManager = false;
         $scope.pSortPriority = false;
         $scope.pSortPhase = false;
+        $scope.pSortRank = true;
         
+        $scope.statusAvailable = false;
         $scope.products = null;
         $scope.productManagers = null;
+        $scope.stat = [
+            "Not Started",
+            "In Progress",
+            "Follow Up",
+            "Complete",
+            "Not Applicable",
+            "No Data"
+        ];
+
         $rootScope.userAuthorized = true;
         $rootScope.userAuthenticated = true;
         
-        function updateStatus() {
-            actionsFactory.getActions().error(function (data, status, headers, config) {
-                $log.warn('Server error getting product documents: ', status);
-            }).success(function (actions) {
-                var i = 0,
-                    j = 0,
-                    k = 0;
-                actions = actions.objSort("productId", "phaseNum", "groupNum", "-actionStatus");
-                for (i = 0; i < $scope.products.length; i++) {
-                    for (j = 0; j < 5; j++) {
-                        for (k = 0; k < actions.length; k++) {
-                            
-                        }
-                    }
-                }
-            });
-        }
         
         function init() {
+            
+             
             if ($rootScope.userAuthorized) {
                 productsFactory.getProducts().error(function (data, status, headers, config) {
-                    $log.warn('Server error getting product documents: ', status);
+                    $log.warn('Server error getting Products documents: ', status);
                 }).success(function (products) {
-                    $scope.products = products;
+                    var i = 0,
+                        j = 0;
                     
-                    // get the users collection (to find Product Managers)
+                    $scope.products = products.objSort("productId");
                     
-                    usersFactory.getUsers().error(function (data, status, headers, config) {
-                        $log.warn('Server error getting users: ', status);
-                    }).success(function (users) {
+                    // build a product status matrix
+                    
+                    $scope.phaseStatus = [];
+                    
+                    for (i = 0; i < $scope.products.length; i++) {
+                        $scope.phaseStatus[i] = {};
+                        $scope.phaseStatus[i].productId = $scope.products[i]._id;
+                        $scope.phaseStatus[i].status = [];
+                        for (j = 0; j < 5; j++) {
+                            $scope.phaseStatus[i].status[j] = 5;
+                        }
+                    }
+                    
+                    // Get the actions to populate the $scope.phaseStatus matrix
+                    
+                    actionsFactory.getActions().error(function (data, status, headers, config) {
+                        $log.warn('Server error getting Actions documents: ', status);
+                    }).success(function (actions) {
+                            
+                        actions = actions.objSort("productId", "phaseNum", "actionStatus");
                         
-                        var i = 0,
-                            j = 0;
-                        $scope.users = users;
+                        //  set up loop control variables to trigger changes on first loop pass
+                        
+                        var val = 0,
+                            i = 0,
+                            j = 0,
+                            prodId = actions[actions.length - 1].productId,  /* set "current" product ID to the last product ID in the actions list  */
+                            phNum = 5;                                       /* and phase number to an out of range value  */
+                        
+                        for (i = 0; i < actions.length; i++) {
+                            if (actions[i].productId !== prodId || actions[i].phaseNum !== phNum) {
+                                prodId = actions[i].productId;
+                                phNum = actions[i].phaseNum;
+                                val = actions[i].actionStatus;
 
-                        // loop through the products and insert the owning PM's name
-
-                        for (i = 0; i < $scope.products.length; i++) {
-                            
-                            // find PM user and insert name into product documentß
-                            for (j = 0; j < $scope.users.length; j++) {
-                                if ($scope.products[i].productManager === $scope.users[j]._id) {
-                                    $scope.products[i].pmName = $scope.users[j].firstName;
-                                    break;
+                                //  loop through the product status matrix to find this product ID
+                                
+                                for (j = 0; j < $scope.phaseStatus.length; j++) {
+                                    if ($scope.phaseStatus[j].productId === prodId) {
+                                        if (val < $scope.phaseStatus[j].status[phNum]) {       /*  if this status value is lower than the current matrix value   */
+                                            $scope.phaseStatus[j].status[phNum] = val;         /*  replace matrix entry with this value                          */
+                                        }
+                                        break;
+                                    }
                                 }
-                            }       /*  end of inner loop (looping through users)     */
-                            
-                        }           /*  end of outer loop (looping through products)  */
+                                
+                            }
+                        }
+                        
+                        for (i = 0; i < $scope.products.length; i++) {
+                            if ($scope.products[i]._id !== $scope.phaseStatus[i].productId) {
+                                $window.alert("Oops! Product ID mismatch: ", $scope.phaseStatus[i].productId, " - Index: ", i);
+                            } else {
+                                $scope.products[i].phaseStatus = $scope.phaseStatus[i].status;
+                            }
+                            $scope.statusAvailable = true;
+                        }
+                    });
+                });
+                    
+                // get the users collection (to find Product Managers)
 
-                    });             /*  end of "success" method for "getUsers"     */
-                });                 /*  end of "success" method for "getProducts"  */
+                usersFactory.getUsers().error(function (data, status, headers, config) {
+                    $log.warn('Server error getting users: ', status);
+                }).success(function (users) {
+
+                    var i = 0,
+                        j = 0;
+                    $scope.users = users;
+
+                    // loop through the products and insert the owning PM's name
+
+                    for (i = 0; i < $scope.products.length; i++) {
+
+                        // find PM user and insert name into product documentß
+                        for (j = 0; j < $scope.users.length; j++) {
+                            if ($scope.products[i].productManager === $scope.users[j]._id) {
+                                $scope.products[i].pmName = $scope.users[j].firstName;
+                                break;
+                            }
+                        }       /*  end of inner loop (looping through users)     */
+
+                    }           /*  end of outer loop (looping through products)  */
+
+                });             /*  end of "success" method for "getUsers"     */
+
             } else {
                 $window.alert("\nYou are not authorized to access this web site.\n (02.02)");
                 $state.go("main");
@@ -146,7 +205,7 @@
         };
     };
     
-    ProductSummaryReportCtrl.$inject = ['$scope', '$rootScope', '$state', '$log', '$window', 'productsFactory', 'usersFactory'];
+    ProductSummaryReportCtrl.$inject = ['$scope', '$rootScope', '$state', '$log', '$window', 'productsFactory', 'actionsFactory', 'usersFactory'];
 
     angular.module('portApp').controller('ProductSummaryReportCtrl', ProductSummaryReportCtrl);
     

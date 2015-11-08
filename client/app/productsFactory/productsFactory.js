@@ -14,7 +14,15 @@
             return $http.get('/api/products');
         };
         
-        factory.getProduct = function (productId) {
+        factory.getActiveProducts = function () {
+            return $http.get('/api/products?complete=false');
+        };
+        
+        factory.getProductsByProductManager = function (userId) {
+            return $http.get('/api/products?productManager=' + userId);
+        };
+        
+       factory.getProduct = function (productId) {
             return $http.get('/api/products/' + productId);
         };
         

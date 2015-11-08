@@ -22,7 +22,7 @@ angular.module('portApp').controller('MainCtrl', function ($scope, $http) {
 
     //  Read the products collection out of the mongo database via the API.
     
-    $http.get('/api/products').success(function (products) {
+    $http.get('/api/products?complete=false').success(function (products) {
         $scope.products = products;
         if (products.length > 0) {
             $scope.productsFound = true;

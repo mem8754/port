@@ -5,7 +5,7 @@
 </div>
 </br>
 <div class="container" ng-show="productsFound">
-    <h4 class="page-header"><strong>Operational Readiness Dashboard</strong></h4>
+    <h4 class="page-header"><strong>Dashboard of Active Products</strong></h4>
         <small>
             <table class="table table-condensed table-striped table-bordered">
                 <thead>
@@ -63,13 +63,13 @@
                         <td>{{ product.productName }}</td>
                         <td>{{ product.businessPriority }}</td>
                         <td>{{ product.businessRank }}</td>
-                        <td>{{ product.currentPhase }}</td>
-                        <td>{{ productStatus[product.phases[0].opsStatus[0]] }}</td>
-                        <td>{{ productStatus[product.phases[1].opsStatus[0]] }}</td>
-                        <td>{{ productStatus[product.phases[2].opsStatus[0]] }}</td>
-                        <td>{{ productStatus[product.phases[3].opsStatus[0]] }}</td>
-                        <td>{{ productStatus[product.phases[4].opsStatus[0]] }}</td>
-                        <td><span ng-show="product.productComplete">Y</span></td>
+                        <td>{{ product.phase }}</td>
+                        <td>{{ product.start[0] }}</td>
+                        <td>{{ product.start[1] }}</td>
+                        <td>{{ product.start[2] }}</td>
+                        <td>{{ product.start[3] }}</td>
+                        <td>{{ product.start[4] }}</td>
+                        <td><span class="fa fa-check" ng-show="product.complete"></span></td>
                     </tr>
                 </tbody>
             </table>

@@ -5,12 +5,13 @@
     'use strict';
     var ProductsCtrl = function ($scope, $rootScope, $state, $log, $window, productsFactory, usersFactory, groupsFactory) {
 
-        $scope.pSortBy = 'productName';
+        $scope.pSortBy = 'productRank';
         $scope.pReverse = false;
-        $scope.pSortName = true;
+        $scope.pSortName = false;
         $scope.pSortManager = false;
         $scope.pSortPriority = false;
         $scope.pSortPhase = false;
+        $scope.pSortRank = true;
         
         $scope.products = null;
         $scope.productManagers = null;

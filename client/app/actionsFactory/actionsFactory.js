@@ -18,6 +18,10 @@
             return $http.get('/api/actions?productId=' + productId + '&groupId=' + groupId);
         };
         
+        factory.getActionsByGroup = function (groupId) {
+            return $http.get('/api/actions?groupId=' + groupId);
+        };
+        
         factory.getActionsByProductGroupPhase = function (productId, groupId, phaseNum) {
             return $http.get('/api/actions?productId=' + productId + '&groupId=' + groupId + '&phaseNum=' + phaseNum);
         };

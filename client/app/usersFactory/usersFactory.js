@@ -18,7 +18,11 @@
             return $http.get('/api/users?email=' + email);
         };
         
-        factory.getUser = function (userId) {
+         factory.getUsersByGroup = function (groupId) {
+            return $http.get('/api/users?groupId=' + groupId);
+        };
+        
+       factory.getUser = function (userId) {
             return $http.get('/api/users/' + userId);
         };
         

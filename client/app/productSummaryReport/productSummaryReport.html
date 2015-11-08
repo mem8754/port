@@ -3,9 +3,10 @@
 <div>
     <div  class="col-xs-12">
         <h2>
-            <strong>PORT - Product Summary Report</strong> ({{ products.length }} product(s))
+            <strong>PORT - Product Summary Report</strong> <small> - {{ products.length }} Product(s) </small>
         </h2>
     </div>
+
     <div class="col-xs-12">&nbsp;</div>
     <div class="col-xs-12">
         <small>
@@ -63,22 +64,22 @@
                         <th>
                            <span>Current Phase&nbsp;</span>
                             <span ng-show="pSortPhase">
-                                <span ng-click="doSort('currentPhase')" ng-show="pReverse" class="fa fa-sort-alpha-asc"></span>
-                                <span ng-click="doSort('currentPhase')" ng-hide="pReverse" class="fa fa-sort-alpha-desc"></span>
+                                <span ng-click="doSort('phase')" ng-show="pReverse" class="fa fa-sort-alpha-asc"></span>
+                                <span ng-click="doSort('phase')" ng-hide="pReverse" class="fa fa-sort-alpha-desc"></span>
                             </span>
                             <span ng-hide="pSortPhase">
-                                <span ng-click="doSort('currentPhase')" class="fa fa-sort"></span>
+                                <span ng-click="doSort('phase')" class="fa fa-sort"></span>
                             </span>
                         </th>
                         <th>
                             <table class="table-condensed table-bordered">
                                 <thead>
                                     <tr>
-                                        <td>Phase</td>
-                                        <td>Start</td>
-                                        <td>Finish</td>
-                                        <td>Comment</td>
-                                        <td>Op Status</td>
+                                        <td>Phase Name</td>
+                                        <td>Start Date</td>
+                                        <td>Finish Date</td>
+                                        <td>Phase Comments</td>
+                                        <td>Ops Status</td>
                                     </tr>
                                 </thead>
                             </table>
@@ -97,38 +98,38 @@
                                 <tbody>
                                     <tr>
                                         <td>Discovery</td>
-                                        <td>{{ product.phases[0].startDate }}</td>
-                                        <td>{{ product.phases[0].finishDate }}</td>
-                                        <td>{{ product.phases[0].comment }}</td>
-                                        <td>{{ product.phases[0].opsStatus[0] }}</td>
+                                        <td>{{ product.start[0] }}</td>
+                                        <td>{{ product.finish[0] }}</td>
+                                        <td>{{ product.comment[0] }}</td>
+                                        <td>{{ stat[ product.phaseStatus[0] ] }}</td>
                                     </tr>
                                     <tr>
                                         <td>Development</td>
-                                        <td>{{ product.phases[1].startDate }}</td>
-                                        <td>{{ product.phases[1].finishDate }}</td>
-                                        <td>{{ product.phases[1].comment }}</td>
-                                        <td>{{ product.phases[1].opsStatus[0] }}</td>
+                                        <td>{{ product.start[1] }}</td>
+                                        <td>{{ product.finish[1] }}</td>
+                                        <td>{{ product.comment[1] }}</td>
+                                        <td>{{ stat[ product.phaseStatus[1] ] }}</td>
                                     </tr>
                                     <tr>
                                         <td>Pilot</td>
-                                        <td>{{ product.phases[2].startDate }}</td>
-                                        <td>{{ product.phases[2].finishDate }}</td>
-                                        <td>{{ product.phases[2].comment }}</td>
-                                        <td>{{ product.phases[2].opsStatus[0] }}</td>
+                                        <td>{{ product.start[2] }}</td>
+                                        <td>{{ product.finish[2] }}</td>
+                                        <td>{{ product.comment[2] }}</td>
+                                        <td>{{ stat[ product.phaseStatus[2] ] }}</td>
                                     </tr>
                                     <tr>
                                         <td>Pre-Launch</td>
-                                        <td>{{ product.phases[3].startDate }}</td>
-                                        <td>{{ product.phases[3].finishDate }}</td>
-                                        <td>{{ product.phases[3].comment }}</td>
-                                        <td>{{ product.phases[3].opsStatus[0] }}</td>
+                                        <td>{{ product.start[3] }}</td>
+                                        <td>{{ product.finish[3] }}</td>
+                                        <td>{{ product.comment[3] }}</td>
+                                        <td>{{ stat[ product.phaseStatus[3] ] }}</td>
                                     </tr>
                                     <tr>
                                         <td>Post-Launch</td>
-                                        <td>{{ product.phases[4].startDate }}</td>
-                                        <td>{{ product.phases[4].finishDate }}</td>
-                                        <td>{{ product.phases[4].comment }}</td>
-                                        <td>{{ product.phases[4].opsStatus[0] }}</td>
+                                        <td>{{ product.start[4] }}</td>
+                                        <td>{{ product.finish[4] }}</td>
+                                        <td>{{ product.comment[4] }}</td>
+                                        <td>{{ stat[ product.phaseStatus[4] ] }}</td>
                                     </tr>
                                 </tbody>
                             </table>

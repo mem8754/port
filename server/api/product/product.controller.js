@@ -47,9 +47,9 @@ exports.update = function (req, res) {
         if (err) { return handleError(res, err); }
         if (!product) { return res.send(404); }
         var updated = _.merge(product, req.body);
-        updated.save(function (err) {
+        Product.findOneAndUpdate({ _id : req.params.id }, { $set : updated }, { upsert : false }, function (err, affected, raw) {
             if (err) { return handleError(res, err); }
-            return res.status(200).json(product);
+            return res.status(200).json(affected);
         });
     });
 };

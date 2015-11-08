@@ -23,7 +23,7 @@ exports.index = function (req, res) {
     // groups are returned (_id, opsId fields only).
     
     if (req.query.opsGroups) {
-        Group.find({ 'opsId' : { $gt : 0 }}, { '_id': true, 'opsId': true}, function (err, groups) {
+        Group.find({ 'opsId' : { $gt : 0 }}, { '_id': true, 'opsId': true, 'groupName': true}, function (err, groups) {
             if (err) { return handleError(res, err); }
             return res.status(200).json(groups);
         });

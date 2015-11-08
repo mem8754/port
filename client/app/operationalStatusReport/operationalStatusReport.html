@@ -1,0 +1,112 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div>
+    <div  class="col-xs-12">
+        <h2>
+            <strong>PORT - Operational Status Report</strong> <small>- {{ products.length }} Active Product(s)</small>
+        </h2>
+    </div>
+
+        <div class="col-xs-12">
+        <form class="form-horizontal">
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">Product Manager:</label>
+                    <div class="col-xs-8">
+                        <select ng-model="pmFilter.productManager"
+                                ng-options="user._id as user.lastName for user in users">
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="col-xs-12">&nbsp;</div>
+    </div>
+
+    <div class="col-xs-12">&nbsp;</div>
+    <div class="col-xs-12">
+        <small>
+            <table class="table table-condensed table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                           <span>Product Name&nbsp;</span>
+                            <span ng-show="pSortName">
+                                <span ng-click="doSort('productName')" ng-show="pReverse" class="fa fa-sort-alpha-asc"></span>
+                                <span ng-click="doSort('productName')" ng-hide="pReverse" class="fa fa-sort-alpha-desc"></span>
+                            </span>
+                            <span ng-hide="pSortName">
+                                <span ng-click="doSort('productName')" class="fa fa-sort"></span>
+                            </span>
+                        </th>
+                        <th>
+                           <span>Priority&nbsp;</span>
+                            <span ng-show="pSortPriority">
+                                <span ng-click="doSort('businessPriority')" ng-show="pReverse" class="fa fa-sort-alpha-asc"></span>
+                                <span ng-click="doSort('businessPriority')" ng-hide="pReverse" class="fa fa-sort-alpha-desc"></span>
+                            </span>
+                            <span ng-hide="pSortPriority">
+                                <span ng-click="doSort('businessPriority')" class="fa fa-sort"></span>
+                            </span>
+                        </th>
+                        <th>
+                           <span>Rank&nbsp;</span>
+                            <span ng-show="pSortRank">
+                                <span ng-click="doSort('businessRank')" ng-show="pReverse" class="fa fa-sort-numeric-asc"></span>
+                                <span ng-click="doSort('businessRank')" ng-hide="pReverse" class="fa fa-sort-numeric-desc"></span>
+                            </span>
+                            <span ng-hide="pSortRank">
+                                <span ng-click="doSort('businessRank')" class="fa fa-sort"></span>
+                            </span>
+                        </th>
+                        <th>
+                           <span>Current Phase&nbsp;</span>
+                            <span ng-show="pSortPhase">
+                                <span ng-click="doSort('phase')" ng-show="pReverse" class="fa fa-sort-alpha-asc"></span>
+                                <span ng-click="doSort('phase')" ng-hide="pReverse" class="fa fa-sort-alpha-desc"></span>
+                            </span>
+                            <span ng-hide="pSortPhase">
+                                <span ng-click="doSort('phase')" class="fa fa-sort"></span>
+                            </span>
+                        </th>
+                        <th>
+                            <span>Group / Phase Status</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="product in products | filter: pmFilter | orderBy:pSortBy:pReverse">
+                        <td>{{ product.productName }}</td>
+                        <td>{{ product.businessPriority }}</td>
+                        <td>{{ product.businessRank }}</td>
+                        <td>{{ product.phase }}</td>
+                        <td>
+                            <table class="table-condensed table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Group Name</th>
+                                        <th>Discovery</th>
+                                        <th>Development</th>
+                                        <th>Pilot</th>
+                                        <th>Pre-Launch</th>
+                                        <th>Post-Launch</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="group in product.groups | orderBy: 'groupIndex'">
+                                        <td>{{ opsGroups[group.groupIndex].groupName }}</td>
+                                        <td>{{ stat[group.phases[0]] }}</td>
+                                        <td>{{ stat[group.phases[1]] }}</td>
+                                        <td>{{ stat[group.phases[2]] }}</td>
+                                        <td>{{ stat[group.phases[3]] }}</td>
+                                        <td>{{ stat[group.phases[4]] }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </small>
+    </div>
+</div>

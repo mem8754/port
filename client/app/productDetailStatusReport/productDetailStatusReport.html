@@ -1,0 +1,88 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div>
+    <div  class="col-xs-12">
+        <h2>
+            <strong>PORT - Product Detail Report</strong><small> - ({{ products.length }} "Active" Product(s))</small>
+        </h2>
+    </div>
+
+    <div class="col-xs-12">&nbsp;</div>
+    <div class="col-xs-12">
+        <small>
+            <table class="table table-condensed table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                           <span>Product Name&nbsp;</span>
+                            <span ng-show="pSortName">
+                                <span ng-click="doSort('productName')" ng-show="pReverse" class="fa fa-sort-alpha-asc"></span>
+                                <span ng-click="doSort('productName')" ng-hide="pReverse" class="fa fa-sort-alpha-desc"></span>
+                            </span>
+                            <span ng-hide="pSortName">
+                                <span ng-click="doSort('productName')" class="fa fa-sort"></span>
+                            </span>
+                        </th>
+                        <th>
+                           <span>Current Phase&nbsp;</span>
+                            <span ng-show="pSortPhase">
+                                <span ng-click="doSort('phase')" ng-show="pReverse" class="fa fa-sort-alpha-asc"></span>
+                                <span ng-click="doSort('phase')" ng-hide="pReverse" class="fa fa-sort-alpha-desc"></span>
+                            </span>
+                            <span ng-hide="pSortPhase">
+                                <span ng-click="doSort('phase')" class="fa fa-sort"></span>
+                            </span>
+                        </th>
+                        <th>Phase Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="product in products | orderBy:pSortBy:pReverse">
+                        <td>{{ product.productName }}</td>
+                        <td>{{ product.phase }}</td>
+                        <td>
+                            <table class="table table-condensed table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Ops Group</th>
+                                        <th>Discovery</th>
+                                        <th>Development</th>
+                                        <th>Pilot Phase</th>
+                                        <th>Pre-Launch</th>
+                                        <th>Post-Launch</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Start:</td>
+                                        <td>{{ product.start[0] }}</td>
+                                        <td>{{ product.start[1] }}</td>
+                                        <td>{{ product.start[2] }}</td>
+                                        <td>{{ product.start[3] }}</td>
+                                        <td>{{ product.start[4] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Finish:</td>
+                                        <td>{{ product.finish[0] }}</td>
+                                        <td>{{ product.finish[1] }}</td>
+                                        <td>{{ product.finish[2] }}</td>
+                                        <td>{{ product.finish[3] }}</td>
+                                        <td>{{ product.finish[4] }}</td>
+                                    </tr>
+                                    <tr ng-repeat="group in product.groups">
+                                        <td><strong>{{ opsGroups[group.groupIndex].groupName }}</strong></td>
+                                        <td>{{ stat[group.phases[0]] }}</td>
+                                        <td>{{ stat[group.phases[1]] }}</td>
+                                        <td>{{ stat[group.phases[2]] }}</td>
+                                        <td>{{ stat[group.phases[3]] }}</td>
+                                        <td>{{ stat[group.phases[4]] }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </small>
+    </div>
+</div>
