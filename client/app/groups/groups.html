@@ -45,9 +45,7 @@
                     <td>
                         <a href="/editGroup/{{ group._id }}"><span class="fa fa-pencil"></span></a>
                     </td>
-                    <td>
-                        <a href="/actions/{{ group._id }}">{{ group.groupName }}</a>
-                    </td>
+                    <td>{{ group.groupName }}</td>
                     <td>{{ group.groupNum | number : 1 }}</td>
                     <td>{{ group.opsId | number : 0 }}</td>
                 </tr>
