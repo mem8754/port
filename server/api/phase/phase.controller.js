@@ -47,11 +47,7 @@ exports.update = function (req, res) {
     Phase.findById(req.params.id, function (err, phase) {
         if (err) { return handleError(res, err); }
         if (!phase) { return res.send(404); }
-        console.log('Original: ', phase.status);
         var updated = _.merge(phase, req.body);
-        console.log('Revisions: ', req.body.status);
-        console.log('Original: ', phase.status);
-        console.log('Updated: ', updated.status);
         updated.save(function (err) {
             if (err) { return handleError(res, err); }
             return res.status(200).json(phase);

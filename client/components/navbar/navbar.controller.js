@@ -17,6 +17,10 @@ angular.module('portApp')
                 'link': '/products'
             },
             {
+                'title': 'Ops Readiness',
+                'link': '/opsReadiness'
+            },
+            {
                 'title': 'Objectives',
                 'link': '/objectives'
             },
