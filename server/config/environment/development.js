@@ -1,12 +1,11 @@
 /*jslint node: true, nomen: true  */
 
-// Development specific configuration
-// ==================================
-module.exports = {
-  // MongoDB connection options
-    mongo: {
-        uri: 'mongodb://localhost/port'
-    },
+//  "Development" environment configuration
 
-    seedDB: false
+module.exports = {
+    
+//  MongoDB connection options
+    
+    mongo: { uri: 'mongodb://localhost/portdev' },
+    DOMAIN: 'http://localhost:9050'
 };

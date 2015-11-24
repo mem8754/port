@@ -59,5 +59,4 @@ angular.module('portApp').controller('MainCtrl', function ($scope, $http) {
             }
         }
     };
-
 });

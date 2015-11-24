@@ -11,20 +11,42 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var express = require('express'),
     mongoose = require('mongoose'),
+    session = require('express-session'),
+    methodOverride = require('method-override'),
+    passport = require('passport'),
+    env = process.env.NODE_ENV,
     config = require('./config/environment');
 
 // Connect to database
-mongoose.connect(config.mongo.uri, config.mongo.options);
+var db = mongoose.connect(config.mongo.uri, config.mongo.options);
 console.log('Mongo URI: ', config.mongo.uri);
 
-// Populate DB with sample data
-if (config.seedDB) { require('./config/seed'); }
+require('./config/passport')(db);
 
 // Setup server
 var app = express();
 var server = require('http').createServer(app);
-require('./config/express')(app);
-require('./routes')(app);
+
+//  configure express parameters
+require('./config/express')(app, config, passport);
+
+//  configure session using mongoose for session storage
+var MongoStore = require('connect-mongo')(session);
+app.use(session({
+    key: 'app.sess',
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    secret: config.secrets.session,
+    resave: false,
+    saveUninitialized: false
+}));
+
+// configure session for passport
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(methodOverride());
+
+//  configure routes for http calls and for authentication interfaces
+require('./routes')(app, config, passport);
 
 // Start server
 server.listen(config.port, config.ip, function () {
@@ -33,4 +55,3 @@ server.listen(config.port, config.ip, function () {
 
 // Expose app
 module.exports = app;
-exports = module.exports;
