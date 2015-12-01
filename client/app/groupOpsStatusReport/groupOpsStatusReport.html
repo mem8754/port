@@ -43,6 +43,16 @@
                             </span>
                         </th>
                         <th>
+			    <span>Product Mgr&nbsp;</span>
+			    <span ng-show="pSortMgr">
+			        <span ng-click="doSort('productMgr')" ng-show="pReverse" class="fa fa-sort-alpha-asc"></span>
+				<span ng-click="doSort('productMgr')" ng-hide="pReverse" class="fa fa-sort-alpha-desc"></span>
+			    </span>
+			    <span ng-hide="pSortMgr">
+			    	<span ng-click="doSort('productMgr')" class="fa fa-sort"></span>
+			    </span>
+			</th>
+			<th>
                            <span>Priority&nbsp;</span>
                             <span ng-show="pSortPriority">
                                 <span ng-click="doSort('businessPriority')" ng-show="pReverse" class="fa fa-sort-alpha-asc"></span>
@@ -82,6 +92,7 @@
                 <tbody>
                     <tr ng-repeat="product in products | orderBy:pSortBy:pReverse">
                         <td>{{ product.productName }}</td>
+			<td>{{ product.productMgr }}</td>
                         <td>{{ product.businessPriority }}</td>
                         <td>{{ product.businessRank }}</td>
                         <td>{{ product.phase }}</td>
