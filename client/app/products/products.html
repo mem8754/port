@@ -1,11 +1,7 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="container">
-    <div  class="col-xs-12">
-        <h2>
-            <strong>PORT - List of Products</strong> (count = {{ products.length }})
-        </h2>
-    </div>
+    <h2><strong>List of Products</strong><small> - {{ products.length }} <span ng-show="singleProduct">Product</span><span ng-hide="singleProduct">Products</span></small></h2>
     <div class="col-xs-12">&nbsp;</div>
     <div class="col-xs-3">&nbsp;</div>
     <div class="col-xs-4">

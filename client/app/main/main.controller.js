@@ -26,6 +26,11 @@ angular.module('portApp').controller('MainCtrl', function ($scope, $http) {
         $scope.products = products;
         if (products.length > 0) {
             $scope.productsFound = true;
+            if (products.length === 1) {
+                $scope.singleProduct = true;
+            } else {
+                $scope.singleProduct = false;
+            }
         }
     });
     

@@ -1,11 +1,7 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div>
-    <div  class="col-xs-12">
-        <h2>
-            <strong>PORT - Product Manager Operational Status Report</strong> <small>- {{ products.length }} Product(s)</small>
-        </h2>
-    </div>
+    <h2><strong>Product Manager Operational Status Report</strong><small> - {{ products.length }} Active <span ng-show="singleProduct">Product</span><span ng-hide="singleProduct">Products</span></small></h2>
 
     <div class="col-xs-12">&nbsp;</div>
 
@@ -23,10 +19,8 @@
                 </div>
             </div>
         </form>
-        <div class="col-xs-12">&nbsp;</div>
     </div>
 
-    <div class="col-xs-12">&nbsp;</div>
     <div ng-if="statusAvailable" class="col-xs-12">
         <small>
             <table class="table table-condensed table-striped table-bordered">

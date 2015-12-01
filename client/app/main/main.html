@@ -1,7 +1,7 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="container">
-    <h2><strong>Active Product Dashboard</strong><small> - ({{ products.length }} Active Products)</small></h2>
+    <h2><strong>Product Dashboard</strong><small> - {{ products.length }} Active <span ng-show="singleProduct">Product</span><span ng-hide="singleProduct">Products</span></small></h2>
 </div>
 </br>
 <div class="container" ng-show="productsFound">

@@ -379,6 +379,12 @@
                     $log.warn('Server error getting Products documents: ', status);
                 }).success(function (products) {
                     $scope.products = products.objSort("productId");
+
+                    if (products.length === 1) {
+                        $scope.singleProduct = true;
+                    } else {
+                        $scope.singleProduct = false;
+                    }
                     
                     // Get the actions to populate the $scope.products.groupsStatus matrix
                     

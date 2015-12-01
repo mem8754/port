@@ -41,6 +41,12 @@
                     
                     $scope.products = products.objSort("productId");
                     
+                    if (products.length === 1) {
+                        $scope.singleProduct = true;
+                    } else {
+                        $scope.singleProduct = false;
+                    }
+                    
                     // build a product status matrix
                     
                     $scope.phaseStatus = [];

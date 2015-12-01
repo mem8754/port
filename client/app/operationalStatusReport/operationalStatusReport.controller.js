@@ -8,6 +8,7 @@
         $scope.pSortBy = 'productName';
         $scope.pReverse = false;
         $scope.pSortName = true;
+        $scope.pSortMgr = false;
         $scope.pSortPriority = false;
         $scope.pSortPhase = false;
         
@@ -400,21 +401,46 @@
                 }).success(function (products) {
                     $scope.products = products.objSort("productId");
                     
-                    // Get the actions to populate the $scope.products.groupsStatus matrix
+                    if (products.length === 1) {
+                        $scope.singleProduct = true;
+                    } else {
+                        $scope.singleProduct = false;
+                    }
                     
-                    actionsFactory.getActions().error(function (data, status, headers, config) {
-                        $log.warn('Server error getting Actions documents: ', status);
-                    }).success(function (actions) {
-                        actions = actions.objSort("productId", "groupId", "phaseNum", "actionStatus");
+                    // get the users collection (to find Product Managers)
+                    
+                    usersFactory.getUsers().error(function (data, status, headers, config) {
+                        $log.warn('Server error getting users: ', status);
+                    }).success(function (users) {
+                        var i, j;
                         
-                        var productStatus = processActions(actions),
-                            productMatrix = buildStatusMatrix(productStatus);
-                        
-                        integrateProductStatus(productMatrix);
-                        
-                        $scope.statusAvailable = true;
-                    });
-                });
+                        // loop through the products and insert the PM name
+
+                        for (i = 0; i < $scope.products.length; i++) {
+                            for (j = 0; j < users.length; j++) {
+                                if ($scope.products[i].productManager === users[j]._id) {
+                                    $scope.products[i].pmName = users[j].lastName;
+                                    break;
+                                }
+                            }       /*  end of inner loop (looping through users)     */
+                        }           /*  end of outer loop (looping through products)  */
+
+                        // Get the actions to populate the $scope.products.groupsStatus matrix
+
+                        actionsFactory.getActions().error(function (data, status, headers, config) {
+                            $log.warn('Server error getting Actions documents: ', status);
+                        }).success(function (actions) {
+                            actions = actions.objSort("productId", "groupId", "phaseNum", "actionStatus");
+
+                            var productStatus = processActions(actions),
+                                productMatrix = buildStatusMatrix(productStatus);
+
+                            integrateProductStatus(productMatrix);
+
+                            $scope.statusAvailable = true;
+                        });         /*  end of "success" method for "getActions"   */
+                    });             /*  end of "success" method for "getUsers"     */
+                });                 /*  end of "success" method for "getActiveProducts"  */
 
             } else {
                 $window.alert("\nYou are not authorized to access this web site.\n (02.02)");
@@ -464,6 +490,7 @@
             } else {
                 $scope.pReverse = false;
                 $scope.pSortName = false;
+                $scope.pSortMgr = false;
                 $scope.pSortPriority = false;
                 $scope.pSortRank = false;
                 $scope.pSortPhase = false;
@@ -473,6 +500,9 @@
                 switch (propName) {
                 case "productName":
                     $scope.pSortName = true;
+                    break;
+                case "productMgr":
+                    $scope.pSortMgr = true;
                     break;
                 case "businessPriority":
                     $scope.pSortPriority = true;
