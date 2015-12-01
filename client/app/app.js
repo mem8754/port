@@ -14,8 +14,8 @@ portApp.config(function ($stateProvider, $urlRouterProvider, $locationProvider) 
     $stateProvider
         .state('home', {
             url: '/',
-            templateUrl: 'app/home/home.html',
-            controller: 'HomeCtrl'
+            templateUrl: 'app/main/main.html',
+            controller: 'MainCtrl'
         
         });
 });
