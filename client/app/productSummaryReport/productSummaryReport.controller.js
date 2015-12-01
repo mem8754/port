@@ -118,7 +118,7 @@
                         // find PM user and insert name into product documentß
                         for (j = 0; j < $scope.users.length; j++) {
                             if ($scope.products[i].productManager === $scope.users[j]._id) {
-                                $scope.products[i].pmName = $scope.users[j].firstName;
+                                $scope.products[i].pmName = $scope.users[j].lastName;
                                 break;
                             }
                         }       /*  end of inner loop (looping through users)     */

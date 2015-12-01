@@ -6,6 +6,6 @@ module.exports = {
     
 //  MongoDB connection options
     
-    mongo: { uri: 'mongodb://localhost/portdev' },
+    mongo: { uri: 'mongodb://localhost/port' },
     DOMAIN: 'http://localhost:9050'
 };
