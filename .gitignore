@@ -2,7 +2,9 @@ node_modules
 public
 .tmp
 .idea
+*.swp
+*.log
+bower_components
 client/bower_components
 dist
 local.env.js
-data

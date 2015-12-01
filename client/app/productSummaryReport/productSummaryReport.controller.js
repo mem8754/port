@@ -33,7 +33,7 @@
             
              
             if ($rootScope.userAuthorized) {
-                productsFactory.getProducts().error(function (data, status, headers, config) {
+                productsFactory.getActiveProducts().error(function (data, status, headers, config) {
                     $log.warn('Server error getting Products documents: ', status);
                 }).success(function (products) {
                     var i = 0,

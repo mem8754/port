@@ -420,7 +420,7 @@
                 });
                 
 
-                productsFactory.getProducts().error(function (data, status, headers, config) {
+                productsFactory.getActiveProducts().error(function (data, status, headers, config) {
                     $log.warn('Server error getting Products documents: ', status);
                 }).success(function (products) {
                     $scope.products = products.objSort("productId");
@@ -496,7 +496,8 @@
             } else {
                 $scope.pReverse = false;
                 $scope.pSortName = false;
-                $scope.pSortPriority = false;
+                $scope.pSortMgr = false;
+		$scope.pSortPriority = false;
                 $scope.pSortRank = false;
                 $scope.pSortPhase = false;
                 
@@ -506,7 +507,10 @@
                 case "productName":
                     $scope.pSortName = true;
                     break;
-                case "businessPriority":
+                case "productMgr":
+		    $scope.pSortMgr = true;
+		    break;
+		case "businessPriority":
                     $scope.pSortPriority = true;
                     break;
                 case "currentPhase":
