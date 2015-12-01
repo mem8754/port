@@ -1,16 +1,15 @@
+/*jslint node: true, nomen: true  */
+
 /**
  * Main application routes
  */
-
-/*jslint node: true, nomen: true  */
-/*global angular */
 
 var errors = require('./components/errors'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     methodOverride = require('method-override');
 
-module.exports = function (app) {
+module.exports = function (app, config, passport) {
     'use strict';
 
 // parse application/json 
@@ -26,7 +25,52 @@ module.exports = function (app) {
     app.use(methodOverride('X-HTTP-Method-Override'));
 
 // parse cookies with cookie-parser and cookieSecret
-//    app.use(cookieParser(credentials.cookieSecret));
+    app.use(cookieParser(config.secrets.cookie));
+
+// Passport routes.    
+    app.get("/", function (req, res) {
+		if (req.isAuthenticated()) {
+            res.json({user : req.user});
+		} else {
+			res.redirect("/login", {
+                user : null
+            });
+		}
+	});
+
+	app.get("/login", function (req, res) {
+        console.log('/login get request received: ');
+        passport.authenticate(config.passport.strategy, {
+            successRedirect : "/",
+            failureRedirect : "/login"
+        });
+    });
+
+	app.post('/login/callback', function (req, res) {
+        console.log('/login/callback post response received: ');
+		passport.authenticate(config.passport.strategy,
+			{
+				failureRedirect: '/',
+				failureFlash: true
+			});
+        res.redirect('/');
+    });
+
+	app.get("/profile", function (req, res) {
+        console.log('/profile get request received: ');
+        if (req.isAuthenticated()) {
+			res.json({ user : req.user });
+        } else {
+            res.redirect("/login");
+	    }
+	});
+
+	app.get('/logout', function (req, res) {
+        console.log('/logout get request received: ');
+		req.logout();
+		// TODO: invalidate session on IP
+		res.redirect('/');
+	});
 
 // define API routes.
     app.use('/api/actions', require('./api/action'));

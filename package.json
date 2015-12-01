@@ -23,13 +23,17 @@
     "angular-ui-router": "^0.2.15",
     "body-parser": "^1.14.1",
     "bootstrap": "^3.3.5",
+    "connect-mongo": "^0.8.2",
     "cookie-parser": "^1.4.0",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
+    "express-session": "^1.12.1",
     "jquery": "^2.1.4",
     "lodash": "^3.10.1",
     "method-override": "^2.3.5",
-    "mongoose": "^4.1.12"
+    "mongoose": "^4.1.12",
+    "passport": "^0.3.2",
+    "passport-saml": "^0.14.0"
   },
   "homepage": "https://github.com/mem8754/post#readme"
 }

@@ -6,7 +6,7 @@ angular.module('portApp')
         $scope.menu = [
             {
                 'title': 'Home',
-                'link': '/'
+                'link': '/home'
             },
             {
                 'title': 'Reports',
