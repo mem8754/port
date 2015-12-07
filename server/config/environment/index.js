@@ -8,15 +8,17 @@ var path        =   require('path'),
         port        :   process.env.PORT || 9050,                       // Server port
         passport    :   {
             strategy    :   'saml',
-            saml        :   {
-                callbackUrl :   'http://192.168.1.107:9050/login/callback',
-                entryPoint  :   'https://openidp.feide.no/simplesaml/saml2/idp/SSOService.php',
-                issuer      :   'http://192.168.1.107:9050'
+            saml : {
+                entryPoint  :   'https://openidp.feide.no/simplesaml/saml2/idp/SSOService.php?',
+//                                + "metaAlias=/idp"
+//                                + "&spEntityID=http://192.168.1.11:9050/metadata/",
+                issuer      :   'http://192.168.1.11:9050',
+                path        :   'http://192.168.1.11:9050/login/callback'
             }
         },
         secrets     :   {
-            session     :   process.env.SESSION_SECRET || "session-secret",
-            cookie      :   process.env.COOKIE_SECRET || "cookie-secret"
+            session     :   process.env.SESSION_SECRET  ||  "session-secret",
+            cookie      :   process.env.COOKIE_SECRET   ||  "cookie-secret"
         },
         mongo       :   {
             options     :   {

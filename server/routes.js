@@ -1,73 +1,64 @@
 /*jslint node: true, nomen: true  */
 
-/**
- * Main application routes
- */
-
-var errors = require('./components/errors'),
-    bodyParser = require('body-parser'),
-    cookieParser = require('cookie-parser'),
-    methodOverride = require('method-override');
+var errors = require('./components/errors');
 
 module.exports = function (app, config, passport) {
     'use strict';
-
-// parse application/json 
-    app.use(bodyParser.json());
-
-// parse application/vnd.api+json as json
-    app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
-
-// parse application/x-www-form-urlencoded
-    app.use(bodyParser.urlencoded({ extended: true }));
-
-// override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
-    app.use(methodOverride('X-HTTP-Method-Override'));
-
-// parse cookies with cookie-parser and cookieSecret
-    app.use(cookieParser(config.secrets.cookie));
-
-// Passport routes.    
     app.get("/", function (req, res) {
+        console.log("Route handler for root path");
 		if (req.isAuthenticated()) {
+            console.log("User is authenticated: ", req.user);
             res.json({user : req.user});
 		} else {
+            console.log("User not authenticated, redirecting to /login");
 			res.redirect("/login", {
                 user : null
             });
 		}
 	});
 
-	app.get("/login", function (req, res) {
-        console.log('/login get request received: ');
-        passport.authenticate(config.passport.strategy, {
-            successRedirect : "/",
-            failureRedirect : "/login"
-        });
+//  LDAP "login" POST route
+    
+    app.post('/login', passport.authenticate('ldapauth', {session: true}), function (req, res) {
+        console.log("/login POST processed");
+        res.send({status: 'ok'});
     });
-
+    /*
+//  SAML "login" GET route
+    
+	app.get("/login",
+        passport.authenticate(config.passport.strategy, {
+            successRedirect : "/main",
+            failureRedirect : "/login"
+        })
+        );
+    
+//  SAML "login/callback" POST route
+    
 	app.post('/login/callback', function (req, res) {
-        console.log('/login/callback post response received: ');
 		passport.authenticate(config.passport.strategy,
 			{
 				failureRedirect: '/',
 				failureFlash: true
 			});
-        res.redirect('/');
+        res.redirect('/main');
     });
-
+    */
+    
+//  "profile" route
+    
 	app.get("/profile", function (req, res) {
-        console.log('/profile get request received: ');
         if (req.isAuthenticated()) {
 			res.json({ user : req.user });
         } else {
             res.redirect("/login");
 	    }
 	});
-
+    
+//  "logout" route
+    
 	app.get('/logout', function (req, res) {
-        console.log('/logout get request received: ');
-		req.logout();
+        req.logout();
 		// TODO: invalidate session on IP
 		res.redirect('/');
 	});

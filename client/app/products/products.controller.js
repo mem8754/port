@@ -26,6 +26,13 @@
                 }).success(function (products) {
                     $scope.products = products;
                     
+                    if (products.length === 1) {
+                        $scope.singleProduct = true;
+                    } else {
+                        $scope.singleProduct = false;
+                    }
+
+                    
                     // get the users collection (to find Product Managers)
                     
                     usersFactory.getUsers().error(function (data, status, headers, config) {

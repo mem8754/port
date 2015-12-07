@@ -18,7 +18,7 @@
                                 <span ng-click="doSort('productName')" class="fa fa-sort"></span>
                             </span>
                         </th>
-                        <th>
+<!--                        <th>
                             <span>Mgr&nbsp;</span>
                             <span ng-show="pSortManager">
                                 <span ng-click="doSort('pmName')" ng-show="pReverse" class="fa fa-sort-alpha-asc"></span>
@@ -27,7 +27,7 @@
                             <span ng-hide="pSortManager">
                                 <span ng-click="doSort('pmName')" class="fa fa-sort"></span>
                             </span>
-                        </th>
+                        </th>  -->
                         <th>
                            <span>Pri&nbsp;</span>
                             <span ng-show="pSortPriority">
@@ -64,7 +64,7 @@
                 <tbody>
                     <tr ng-repeat="product in products | orderBy:pSortBy:pReverse">
                         <td>{{ product.productName }}</td>
-                        <td>{{ product.pmName }}</td>
+                        <!--<td>{{ product.pmName }}</td>-->
                         <td>{{ product.businessPriority }}</td>
                         <td>{{ product.businessRank }}</td>
                         <td>{{ product.phase }}</td>
