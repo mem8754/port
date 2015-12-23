@@ -3,9 +3,7 @@
 //  "Development" environment configuration
 
 module.exports = {
-    
-//  MongoDB connection options
-    
-    mongo: { uri: 'mongodb://localhost/port' },
-    DOMAIN: 'http://localhost:9050'
+    port        :   process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 9050,
+    mongo       :   { uri: 'mongodb://localhost/port' },
+    DOMAIN      :   'http://localhost'
 };

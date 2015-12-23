@@ -1,67 +1,25 @@
 /*jslint node: true, nomen: true  */
 
-var errors = require('./components/errors');
-
 module.exports = function (app, config, passport) {
     'use strict';
-    app.get("/", function (req, res) {
-        console.log("Route handler for root path");
-		if (req.isAuthenticated()) {
-            console.log("User is authenticated: ", req.user);
-            res.json({user : req.user});
-		} else {
-            console.log("User not authenticated, redirecting to /login");
-			res.redirect("/login", {
-                user : null
-            });
-		}
-	});
 
-//  LDAP "login" POST route
+    var errors = require('./components/errors'),
+        users = require('./controllers/users'),
+        auth = require('./config/auth'),
+        session = require('./controllers/session');
     
-    app.post('/login', passport.authenticate('ldapauth', {session: true}), function (req, res) {
-        console.log("/login POST processed");
-        res.send({status: 'ok'});
-    });
-    /*
-//  SAML "login" GET route
-    
-	app.get("/login",
-        passport.authenticate(config.passport.strategy, {
-            successRedirect : "/main",
-            failureRedirect : "/login"
-        })
-        );
-    
-//  SAML "login/callback" POST route
-    
-	app.post('/login/callback', function (req, res) {
-		passport.authenticate(config.passport.strategy,
-			{
-				failureRedirect: '/',
-				failureFlash: true
-			});
-        res.redirect('/main');
-    });
-    */
-    
-//  "profile" route
-    
-	app.get("/profile", function (req, res) {
-        if (req.isAuthenticated()) {
-			res.json({ user : req.user });
-        } else {
-            res.redirect("/login");
-	    }
-	});
-    
-//  "logout" route
-    
-	app.get('/logout', function (req, res) {
-        req.logout();
-		// TODO: invalidate session on IP
-		res.redirect('/');
-	});
+    // User Routes
+    app.post('/auth/users', users.create);
+    app.get('/auth/users/:userId', users.show);
+
+    // Check if email is available
+    app.get('/auth/check_email/:email', users.exists);
+
+    // Session Routes
+    app.get('/auth/session', auth.ensureAuthenticated, session.session);
+    app.post('/auth/session', session.login);
+    app.delete('/auth/session', session.logout);
+
 
 // define API routes.
     app.use('/api/actions', require('./api/action'));

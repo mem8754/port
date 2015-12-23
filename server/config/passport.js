@@ -1,73 +1,48 @@
 /*jslint node: true, nomen: true  */
 
-var LdapStrategy = require('passport-ldapauth');
+var config = require('./environment'),
+    mongoose = require('mongoose'),
+    LocalStrategy = require('passport-local').Strategy,
+    User = mongoose.model('User');
 
-module.exports = function (passport, config, db) {
+module.exports = function (passport) {
     'use strict';
     
-    var OPTS =
-        {
-            server:
-                {
-                    url: 'ldap://dc01.ena.com:389',
-                    bindDn: 'cn=root',
-                    bindCredentials: 'secret',
-                    searchBase: 'ou=passport-ldapauth',
-                    searchFilter: '(uid={{username}})'
-                }
-        };
-    
     passport.serializeUser(function (user, done) {
-        db.collection('users').find({email: user.email}).toArray(function (err, result) {
-            console.log("Passport serialize user: " + user);
-            if (result.length === 0) {
-                //  User is not in the database, add the user.
-                var insertData = [{email: user.email, firstName: user.givenName, lastName: user.sn}];
-                db.collection('users').insert(insertData, function (err, result) {
-                    done(null, insertData);
-                });
-            } else {
-                //  User is already in the database, just return their data
-                done(null, result);
-            }
+        console.log('passport.serializeUser: ' + user.id);
+        done(null, user.id);
+    });
+
+    passport.deserializeUser(function (id, done) {
+        console.log('passport.deserializeUser: ' + id);
+        User.findOne({ _id: id }, function (err, user) {
+            done(err, user);
         });
     });
 
-    passport.deserializeUser(function (user, done) {
-        console.log("Passport de-serialize user: " + user);
-        db.collection('users').find({email: user.email}).toArray(function (err, result) {
-            console.log("Passport de-serialize result: " + result);
-            done(null, user);
-        });
-    });
-
-    passport.use(new LdapStrategy(OPTS));
-
-    /*
-    passport.use(new SamlStrategy(
+    passport.use(new LocalStrategy(
         {
-            path        :   config.passport.saml.path,
-            entryPoint  :   config.passport.saml.entryPoint,
-            issuer      :   config.passport.saml.issuer
+            usernameField   :   'email',
+            passwordField   :   'password'
         },
-        function (profile, done) {
-            console.log("Returning SAML authentication: " + profile);
-            return done(null,
-                {
-                    id                  :   profile.uid,
-                    email               :   profile.email,
-                    displayName         :   profile.cn,
-                    firstName           :   profile.givenName,
-                    lastName            :   profile.sn,
-                    sessionIndex        :   profile.sessionIndex,
-                    saml                :
-                        {
-                            nameID          :   profile.nameID,
-                            nameIDFormat    :   profile.nameIDFormat,
-                            token           :   profile.getAssertionXml()
-                        }
-                });
+        function (email, password, done) {
+            User.findOne({ email: email }, function (err, user) {
+                if (err) {
+                    return done(err);
+                }
+                if (!user) {
+                    return done(null,
+                                false,
+                                { 'errors': { 'email': { type: 'Email is not registered.' } } });
+                }
+                
+                if (!user.authenticate(password)) {
+                    return done(null, false,
+                                { 'errors': { 'password': { type: 'Password is incorrect.' } } });
+                }
+                
+                return done(null, user);
+            });
         }
     ));
-    */
 };

@@ -1,5 +1,5 @@
 <div class="navbar navbar-inverse navbar-fixed-top" ng-controller="NavbarCtrl">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
                 <span class="sr-only">Toggle navigation</span>
@@ -7,30 +7,43 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/" class="navbar-brand"><strong>Product Ops Readiness Tool</strong></a>
+            <a href="/" class="navbar-brand"><strong>Product Ops Readiness Tracker</strong></a>
         </div>
+
         <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
+                <li dropdown>
+                    <a href="#" dropdown-toggle>Reports <span class="fa fa-caret-down"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li ng-repeat="item in reportsMenu" ng-class="{active: isActive(item.link)}">
+                            <a ng-href="{{item.link}}">{{item.title}}</a>
+                        </li>
+                    </ul>
+                </li>
+                
                 <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
                     <a ng-href="{{item.link}}">{{item.title}}</a>
                 </li>
-            </ul>
-<!--
-            <ul class="nav navbar-nav navbar-right">
-                 <li if-not-user ng-class="{active: isActive('/register')}">
-                    <a ui-sref="register">Register</a>
-                </li>
-                <li if-not-user ng-class="{active: isActive('/login')}">
-                    <a ui-sref="login">Login</a>
-                </li>
-                <li if-user ng-class="{active: isActive('/logout')}">
-                    <a ui-sref="main" sp-logout>Logout</a>
+
+                <li dropdown ng-show="currentUser.admin">
+                    <a href="#" dropdown-toggle>Admin <span class="fa fa-caret-down"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li ng-repeat="item in authMenu" ng-class="{active: isActive(item.link)}">
+                            <a ng-href="{{item.link}}">{{item.title}}</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
-  -->
+                
+            <ul class="nav navbar-nav navbar-right" ng-hide="currentUser">
+                <li><a href="/login">Log In</a></li>
+                <li><a href="/signup">Sign up<span>&nbsp;</span></a></li>
+            </ul>
+          
+            <ul class="nav navbar-nav navbar-right" ng-show="currentUser">
+                <li><a href="/profile">{{ currentUser.firstName }}&nbsp;{{ currentUser.lastName }}</a></li>
+                <li><a ng-click="logout()"><span class="fa fa-sign-out"></span>Logout</a></li>
+            </ul>
         </div>
     </div>
 </div>
-
-
-

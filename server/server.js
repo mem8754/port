@@ -12,16 +12,17 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var express = require('express'),
     mongoose = require('mongoose'),
     session = require('express-session'),
-    methodOverride = require('method-override'),
     passport = require('passport'),
+    flash = require('connect-flash'),
     env = process.env.NODE_ENV,
-    config = require('./config/environment');
+    config = require('./config/environment'),
+    models = require('./models/user');
 
 // Connect to database
 var db = mongoose.connect(config.mongo.uri, config.mongo.options);
-console.log('Mongo URI: ', config.mongo.uri);
+console.log('Mongo URL: ', config.mongo.uri);
 
-require('./config/passport')(passport, config, db);
+require('./config/passport')(passport);
 
 // Setup server
 var app = express();
@@ -37,12 +38,13 @@ app.use(session({   key                 : 'app.sess',
                     store               : new MongoStore({ mongooseConnection: mongoose.connection }),
                     secret              : config.secrets.session,
                     resave              : false,
-                    saveUninitialized   : false }));
+                    saveUninitialized   : true }));
                     
 // configure session for passport
 app.use(passport.initialize());
-// app.use(passport.session());
-app.use(methodOverride());
+app.use(passport.session());
+app.use(flash());
+
 
 //  configure routes for http calls and for authentication interfaces
 require('./routes')(app, config, passport);

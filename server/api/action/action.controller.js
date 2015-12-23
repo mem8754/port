@@ -12,8 +12,8 @@
 
 'use strict';
 
-var _ = require('lodash');
-var Action = require('./action.model');
+var _ = require('lodash'),
+    Action = require('./action.model');
 
 // Get list of Actions
 exports.index = function (req, res) {

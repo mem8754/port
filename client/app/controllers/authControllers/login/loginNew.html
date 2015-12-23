@@ -1,0 +1,58 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+    <div  class="col-xs-12">
+        <h2>
+            <strong>User Login</strong>
+        </h2>
+    </div>
+    <div class="col-xs-4">
+        <div>
+
+            <form class="form-horizontal" 
+                  name="form"
+                  ng-submit="login(form)"
+                  novalidate>
+
+                <!--             Form input field for User email input  -->
+
+                <div class="row">
+                    <div class="form-group">
+                        <input type="text" 
+                               class="form-control col-xs-4" 
+                               placeholder="Email"
+                               name="email"
+                               ng-model="user.email"
+                               required
+                               autofocus>
+                    </div>
+                </div>
+
+                <!--             Form input field for User password input  -->
+
+                <div class="row">
+                    <div class="form-group">
+                        <input type="password" 
+                               class="form-control col-xs-4" 
+                               placeholder="Password"
+                               name="password"
+                               ng-model="user.password"
+                               required>
+                    </div>
+                </div>
+
+                <div class="col-xs-12">&nbsp;</div>
+
+                <div class="col-xs-12">{{ error }}</div>
+
+                <div class="col-xs-12">&nbsp;</div>
+
+                <button class="btn col-xs-4 btn-primary btn-block" type="submit"> Sign in </button>
+
+                <span class="clearfix"></span>
+            </form>
+        </div>
+
+        <a href="/signup" class="text-center new-account">Sign Up to request enhanced access.</a>
+    </div>
+</div>

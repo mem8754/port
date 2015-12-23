@@ -15,11 +15,14 @@
 'use strict';
 
 var _ = require('lodash');
-var User = require('./user.model');
+
+//      DON'T USE THE MODEL FROM THIS DIRECTORY; USE THE "User" MODEL FROM '/server/models/user.js' INSTEAD, IT INCLUDES AUTHENTICATION FUNCTIONALITY REQUIRED FOR PASSPORT / SESSION.
+var Users = require('./user.model');
+// var User = require('../../models/user');
 
 // Get list of users
 exports.index = function (req, res) {
-    User.find(req.query, function (err, users) {
+    Users.find(req.query, function (err, users) {
         if (err) { return handleError(res, err); }
         return res.status(200).json(users);
     });
@@ -27,7 +30,7 @@ exports.index = function (req, res) {
 
 // Get a single user by mongo _id
 exports.show = function (req, res) {
-    User.findById(req.params.id, function (err, user) {
+    Users.findById(req.params.id, function (err, user) {
         if (err) { return handleError(res, err); }
         if (!user) { return res.send(404); }
         return res.status(200).json(user);
@@ -35,17 +38,19 @@ exports.show = function (req, res) {
 };
 
 // Creates a new user in the DB.
+/*      DISABLE USER CREATE THROUGH THIS MECHANISM, FORCE USER THROUGH 'SIGNUP' PROCESS
 exports.create = function (req, res) {
-    User.create(req.body, function (err, thing) {
+    Users.create(req.body, function (err, thing) {
         if (err) { return handleError(res, err); }
         return res.status(201).json(thing);
     });
 };
+*/
 
 // Updates an existing user in the DB.
 exports.update = function (req, res) {
     if (req.body._id) { delete req.body._id; }
-    User.findById(req.params.id, function (err, user) {
+    Users.findById(req.params.id, function (err, user) {
         if (err) { return handleError(res, err); }
         if (!user) { return res.send(404); }
         var updated = _.merge(user, req.body);
@@ -58,7 +63,7 @@ exports.update = function (req, res) {
 
 // Deletes a user from the DB.
 exports.destroy = function (req, res) {
-    User.findById(req.params.id, function (err, user) {
+    Users.findById(req.params.id, function (err, user) {
         if (err) { return handleError(res, err); }
         if (!user) { return res.send(404); }
         user.remove(function (err) {
@@ -71,7 +76,7 @@ exports.destroy = function (req, res) {
 // Get user by email - should just return one, but return an array anyway.
 
 exports.findByEmail = function (req, res) {
-    User.find({ email : req.params.email }, function (err, users) {
+    Users.find({ email : req.params.email }, function (err, users) {
         if (err) { return handleError(res, err); }
         return res.status(200).json(users);
     });

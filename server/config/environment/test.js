@@ -3,12 +3,7 @@
 // Specific configuration for "test" environment
 
 module.exports = {
-    
-//  MongoDB connection options
-    
-    mongo: { uri: 'mongodb://localhost/porttest' },
-
-//  Define domain for test environment.
-    
-    DOMAIN: 'http://localhost'
+    port        :   process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3000,
+    mongo       :   { uri: 'mongodb://localhost/porttest' },
+    DOMAIN      :   'http://localhost'
 };

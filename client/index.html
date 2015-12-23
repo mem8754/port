@@ -3,14 +3,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <base href="/">
-        <title>PORT</title>
+        <title>Product Ops Readiness Tracker</title>
         <meta name="description" content="ENA Product Operational Readiness Tracker">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"> <!-- load fontawesome -->
         <link rel="stylesheet" href="css/app.css">
-        <link rel="stylesheet" href="app/main/main.css">
+        <link rel="stylesheet" href="app/controllers/viewControllers/main/main.css">
     </head>
     <body ng-app="portApp">
 
@@ -29,66 +29,81 @@
 
         <!-- Insert application javascript  -->
         <script src="app/app.js"></script>
-          <!-- injector:js -->
-        <script src="app/actions/actions.controller.js"></script>
-        <script src="app/actions/actions.js"></script>
-        <script src="app/actionsFactory/actionsFactory.js"></script>
-        <script src="app/addGroup/addGroup.controller.js"></script>
-        <script src="app/addGroup/addGroup.js"></script>
-        <script src="app/addMilestone/addMilestone.controller.js"></script>
-        <script src="app/addMilestone/addMilestone.js"></script>
-        <script src="app/addObjective/addObjective.controller.js"></script>
-        <script src="app/addObjective/addObjective.js"></script>
-        <script src="app/addProduct/addProduct.controller.js"></script>
-        <script src="app/addProduct/addProduct.js"></script>
-        <script src="app/addUser/addUser.controller.js"></script>
-        <script src="app/addUser/addUser.js"></script>
-        <script src="app/editGroup/editGroup.controller.js"></script>
-        <script src="app/editGroup/editGroup.js"></script>
-        <script src="app/editMilestone/editMilestone.controller.js"></script>
-        <script src="app/editMilestone/editMilestone.js"></script>
-        <script src="app/editObjective/editObjective.controller.js"></script>
-        <script src="app/editObjective/editObjective.js"></script>
-        <script src="app/editProduct/editProduct.controller.js"></script>
-        <script src="app/editProduct/editProduct.js"></script>
-        <script src="app/editUser/editUser.controller.js"></script>
-        <script src="app/editUser/editUser.js"></script>
-        <script src="app/groupOpsStatusReport/groupOpsStatusReport.controller.js"></script>
-        <script src="app/groupOpsStatusReport/groupOpsStatusReport.js"></script>
-        <script src="app/groups/groups.controller.js"></script>
-        <script src="app/groups/groups.js"></script>
-        <script src="app/groupsFactory/groupsFactory.js"></script>
-        <script src="app/home/home.controller.js"></script>
-        <script src="app/home/home.js"></script>
-        <script src="app/main/main.controller.js"></script>
-        <script src="app/main/main.js"></script>
-        <script src="app/milestones/milestones.controller.js"></script>
-        <script src="app/milestones/milestones.js"></script>
-        <script src="app/milestonesFactory/milestonesFactory.js"></script>
-        <script src="app/objectives/objectives.controller.js"></script>
-        <script src="app/objectives/objectives.js"></script>
-        <script src="app/objectivesFactory/objectivesFactory.js"></script>
-        <script src="app/objSort/objSort.js"></script>
-        <script src="app/operationalStatusReport/operationalStatusReport.controller.js"></script>
-        <script src="app/operationalStatusReport/operationalStatusReport.js"></script>
-        <script src="app/opsReadiness/opsReadiness.controller.js"></script>
-        <script src="app/opsReadiness/opsReadiness.js"></script>
-        <script src="app/pmStatusReport/pmStatusReport.controller.js"></script>
-        <script src="app/pmStatusReport/pmStatusReport.js"></script>
-        <script src="app/productDetailStatusReport/productDetailStatusReport.controller.js"></script>
-        <script src="app/productDetailStatusReport/productDetailStatusReport.js"></script>
-        <script src="app/products/products.controller.js"></script>
-        <script src="app/products/products.js"></script>
-        <script src="app/productsFactory/productsFactory.js"></script>
-        <script src="app/productSummaryReport/productSummaryReport.controller.js"></script>
-        <script src="app/productSummaryReport/productSummaryReport.js"></script>
-        <script src="app/reports/reports.controller.js"></script>
-        <script src="app/reports/reports.js"></script>
-        <script src="app/statusFactory/statusFactory.js"></script>
-        <script src="app/users/users.controller.js"></script>
-        <script src="app/users/users.js"></script>
-        <script src="app/usersFactory/usersFactory.js"></script>
 
+        <script src="app/controllers/addControllers/addGroup/addGroup.controller.js"></script>
+        <script src="app/controllers/addControllers/addGroup/addGroup.js"></script>
+        <script src="app/controllers/addControllers/addMilestone/addMilestone.controller.js"></script>
+        <script src="app/controllers/addControllers/addMilestone/addMilestone.js"></script>
+        <script src="app/controllers/addControllers/addObjective/addObjective.controller.js"></script>
+        <script src="app/controllers/addControllers/addObjective/addObjective.js"></script>
+        <script src="app/controllers/addControllers/addProduct/addProduct.controller.js"></script>
+        <script src="app/controllers/addControllers/addProduct/addProduct.js"></script>
+        <script src="app/controllers/addControllers/addUser/addUser.controller.js"></script>
+        <script src="app/controllers/addControllers/addUser/addUser.js"></script>
+        
+        <script src="app/controllers/editControllers/actions/actions.controller.js"></script>
+        <script src="app/controllers/editControllers/actions/actions.js"></script>
+        <script src="app/controllers/editControllers/editGroup/editGroup.controller.js"></script>
+        <script src="app/controllers/editControllers/editGroup/editGroup.js"></script>
+        <script src="app/controllers/editControllers/editMilestone/editMilestone.controller.js"></script>
+        <script src="app/controllers/editControllers/editMilestone/editMilestone.js"></script>
+        <script src="app/controllers/editControllers/editObjective/editObjective.controller.js"></script>
+        <script src="app/controllers/editControllers/editObjective/editObjective.js"></script>
+        <script src="app/controllers/editControllers/editProduct/editProduct.controller.js"></script>
+        <script src="app/controllers/editControllers/editProduct/editProduct.js"></script>
+        <script src="app/controllers/editControllers/editUser/editUser.controller.js"></script>
+        <script src="app/controllers/editControllers/editUser/editUser.js"></script>
+        <script src="app/controllers/editControllers/opsReadiness/opsReadiness.controller.js"></script>
+        <script src="app/controllers/editControllers/opsReadiness/opsReadiness.js"></script>
+
+        <script src="app/controllers/viewControllers/groups/groups.controller.js"></script>
+        <script src="app/controllers/viewControllers/groups/groups.js"></script>
+        <script src="app/controllers/viewControllers/home/home.controller.js"></script>
+        <script src="app/controllers/viewControllers/home/home.js"></script>
+        <script src="app/controllers/viewControllers/main/main.controller.js"></script>
+        <script src="app/controllers/viewControllers/main/main.js"></script>
+        <script src="app/controllers/viewControllers/milestones/milestones.controller.js"></script>
+        <script src="app/controllers/viewControllers/milestones/milestones.js"></script>
+        <script src="app/controllers/viewControllers/objectives/objectives.controller.js"></script>
+        <script src="app/controllers/viewControllers/objectives/objectives.js"></script>
+        <script src="app/controllers/viewControllers/products/products.controller.js"></script>
+        <script src="app/controllers/viewControllers/products/products.js"></script>
+        <script src="app/controllers/viewControllers/reports/reports.controller.js"></script>
+        <script src="app/controllers/viewControllers/reports/reports.js"></script>
+        <script src="app/controllers/viewControllers/users/users.controller.js"></script>
+        <script src="app/controllers/viewControllers/users/users.js"></script>
+
+        <script src="app/services/actionsFactory/actionsFactory.js"></script>
+        <script src="app/services/Auth/Auth.js"></script>
+        <script src="app/services/groupsFactory/groupsFactory.js"></script>
+        <script src="app/services/milestonesFactory/milestonesFactory.js"></script>
+        <script src="app/services/objectivesFactory/objectivesFactory.js"></script>
+        <script src="app/services/objSort/objSort.js"></script>
+        <script src="app/services/productsFactory/productsFactory.js"></script>
+        <script src="app/services/Session/Session.js"></script>
+        <script src="app/services/statusFactory/statusFactory.js"></script>
+        <script src="app/services/User/User.js"></script>
+        <script src="app/services/usersFactory/usersFactory.js"></script>
+        
+        <script src="app/controllers/authControllers/login/login.controller.js"></script>
+        <script src="app/controllers/authControllers/login/login.js"></script>
+        <script src="app/controllers/authControllers/signup/signup.controller.js"></script>
+        <script src="app/controllers/authControllers/signup/signup.js"></script>
+        
+        <script src="app/controllers/reportControllers/groupOpsStatusReport/groupOpsStatusReport.controller.js"></script>
+        <script src="app/controllers/reportControllers/groupOpsStatusReport/groupOpsStatusReport.js"></script>
+        <script src="app/controllers/reportControllers/operationalStatusReport/operationalStatusReport.controller.js"></script>
+        <script src="app/controllers/reportControllers/operationalStatusReport/operationalStatusReport.js"></script>
+        <script src="app/controllers/reportControllers/pmStatusReport/pmStatusReport.controller.js"></script>
+        <script src="app/controllers/reportControllers/pmStatusReport/pmStatusReport.js"></script>
+        <script src="app/controllers/reportControllers/productDetailStatusReport/productDetailStatusReport.controller.js"></script>
+        <script src="app/controllers/reportControllers/productDetailStatusReport/productDetailStatusReport.js"></script>
+        <script src="app/controllers/reportControllers/productSummaryReport/productSummaryReport.controller.js"></script>
+        <script src="app/controllers/reportControllers/productSummaryReport/productSummaryReport.js"></script>
+
+        <script src="app/directives/mongooseError.js"></script>
+        <script src="app/directives/onFocus.js"></script>
+        
         <script src="components/navbar/navbar.controller.js"></script>
     </body>
 </html>
