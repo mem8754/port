@@ -3,15 +3,6 @@
 <div class="container">
     <h2><strong>Authorized Users </strong><span><small> - {{ users.length }} total users</small></span></h2>
     <div class="col-xs-12">&nbsp;</div>
-    <div class="col-xs-2">&nbsp;</div>
-    <div class="col-xs-4">
-        <a class="btn btn-default" href="/addUser">
-            <span class="fa fa-plus" aria-hidden="true"></span>
-            &nbsp;Add User
-        </a>
-    </div>
-    <div class="col-xs-6">&nbsp;</div>
-    <div class="col-xs-12">
         <br/>
         <table class="table table-condensed table-striped">
             <thead>
@@ -59,6 +50,8 @@
                     </th>
                     <th>Editor</th>
                     <th>Admin</th>
+                    <th>Approved</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -70,10 +63,10 @@
                     <td>{{ user.lastName }}</td>
                     <td>{{ user.firstName }}</td>
                     <td>{{ user.groupName }}</td>
-                    <td ng-show="user.editor"><span class="fa fa-check"></span></td>
-                    <td ng-hide="user.editor">&nbsp;</td>
-                    <td ng-show="user.admin"><span class="fa fa-check"></span></td>
-                    <td ng-hide="user.admin">&nbsp;</td>
+                    <td><span ng-if="user.editor == true" class="fa fa-check"></span></td>
+                    <td><span ng-if="user.admin == true" class="fa fa-check"></span></td>
+                    <td><span ng-if="user.approved == true" class="fa fa-check"></span></td>
+                    <td><button class="btn btn-success" ng-if="user.approved == false" ng-click="approveUser(user)">Approve</button></td>
                 </tr>
             </tbody>
         </table>

@@ -8,7 +8,7 @@ angular.module('portApp')
         $stateProvider
             .state('actions', {
                 url: '/actions/:groupId',
-                templateUrl: 'app/controllers/viewControllers/actions/actions.html',
+                templateUrl: 'app/controllers/editControllers/actions/actions.html',
                 controller: 'ActionsCtrl'
             });
     });

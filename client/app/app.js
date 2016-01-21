@@ -3,7 +3,7 @@
 
 'use strict';
 
-var portApp = angular.module('portApp', [ 'ngCookies', 'ngResource', 'ngSanitize', 'ui.router' ]);
+var portApp = angular.module('portApp', [ 'ngCookies', 'ngResource', 'ngSanitize', 'ui.router', 'ui.bootstrap' ]);
     
 portApp.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     

@@ -70,7 +70,12 @@
                 <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
                     <button type="submit" class="btn btn-default">Update User</button>
                 </div>
-                <br/>
+                <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                    <span class="btn btn-danger" 
+                          ng-click="removeUser(user._id)">
+                        Delete User
+                    </span>
+                </div>
             </div>
             
         </form>

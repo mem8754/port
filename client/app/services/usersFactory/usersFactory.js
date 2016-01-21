@@ -18,11 +18,11 @@
             return $http.get('/api/users?email=' + email);
         };
         
-         factory.getUsersByGroup = function (groupId) {
+        factory.getUsersByGroup = function (groupId) {
             return $http.get('/api/users?groupId=' + groupId);
         };
         
-       factory.getUser = function (userId) {
+        factory.getUser = function (userId) {
             return $http.get('/api/users/' + userId);
         };
         
@@ -32,6 +32,12 @@
 
         factory.addUser = function (user) {
             return $http.post('/api/users', user);
+        };
+        
+        factory.removeUser = function (userId) {
+            var method = "DELETE",
+                url = '/api/users/' + userId;
+            return $http({ method: method, url: url });
         };
         
         return factory;

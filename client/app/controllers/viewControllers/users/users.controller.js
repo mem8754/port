@@ -43,7 +43,18 @@
             });
         }
         
-
+        
+        $scope.approveUser = function (user) {
+            user.approved = true;
+            usersFactory.updateUser(user).error(function (data, status, headers, config) {
+                $window.alert('\nServer error updating user authorization.\n');
+            }).success(function (data) {
+                $log.log('User authorization for ID ' + user._id + ' approved.');
+            });
+            $state.go('users');
+        };
+        
+        
         $scope.doSort = function (propName) {
             if (propName === $scope.uSortBy) {
                 $scope.uReverse = !$scope.uReverse;

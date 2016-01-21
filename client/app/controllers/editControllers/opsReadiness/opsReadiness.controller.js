@@ -4,8 +4,6 @@
 (function () {
     'use strict';
     var OpsReadinessCtrl = function ($scope, $rootScope, $state, $log, $window, usersFactory, groupsFactory) {
-        $rootScope.userAuthorized = true;
-        $rootScope.userAuthenticated = true;
         
         function init() {
             

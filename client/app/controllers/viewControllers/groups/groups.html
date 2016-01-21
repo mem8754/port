@@ -35,7 +35,15 @@
                             <span ng-click="doSort('groupNum')" ng-hide="gReverse" class="fa fa-sort-numeric-desc"></span>
                         </span>
                     </th>
-                    <th>Index</th>
+                    <th>Ops Index&nbsp;
+                        <span ng-hide="gSortOpsId">
+                            <span ng-click="doSort('opsId')" class="fa fa-sort"></span>
+                        </span>
+                        <span ng-show="gSortOpsId">
+                            <span ng-click="doSort('opsId')" ng-show="gReverse" class="fa fa-sort-numeric-asc"></span>
+                            <span ng-click="doSort('opsId')" ng-hide="gReverse" class="fa fa-sort-numeric-desc"></span>
+                        </span>
+                    </th>
                 </tr>
             </thead>
             <tbody>

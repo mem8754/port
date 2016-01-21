@@ -47,15 +47,37 @@
             }
             usersFactory.updateUser($scope.user).error(function (data, status, headers, config) {
                 if (status === 401 && !$scope.currentUser) {
-                    $window.alert("You must be logged in to make updates to entries.");
+                    $window.alert("\nYou must be logged in to make updates to entries.\n");
                 } else {
-                    $window.alert("System error " + status + " updating user in database.");
+                    $window.alert("\nSystem error " + status + " updating user in database.\n");
                 }
                 
             }).success(function (data) {
                 $state.go('users');
             });
         };
+        
+        $scope.removeUser = function (userId) {
+            if (!Auth.isAdmin()) {
+                $window.alert("\nYou must have Admin authority to delete Users.\n");
+                $state.go('users');
+            }
+            
+            usersFactory.getUser(userId).error(function (data, status, headers, config) {
+                $window.alert("Server error " + status + " retrieving User.");
+            }).success(function (user) {
+                var userResp = $window.confirm('Remove user "' + user.firstName + ' ' + user.lastName + '"?');
+                if (userResp) {
+                    usersFactory.removeUser(user._id).error(function (data, status, headers, config) {    /*  Step 3  */
+                        $window.alert("\nServer error " + status + " removing User from database.\n");
+                    }).success(function (data) {
+                        $window.alert("\nUser successfully deleted from database.\n");
+                        $state.go('users');
+                    });
+                }
+            });
+        };
+        
     };
     
     EditUserCtrl.$inject = ['$scope', '$rootScope', '$state', '$stateParams', '$log', '$window', 'usersFactory', 'groupsFactory', 'Auth'];

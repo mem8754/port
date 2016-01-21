@@ -7,9 +7,10 @@
         
         function init() {
             $scope.gReverse = false;
-            $scope.gSortBy = "groupNum";
+            $scope.gSortBy = "opsId";
             $scope.gSortGName = false;
-            $scope.gSortGNum = true;
+            $scope.gSortGNum = false;
+            $scope.gSortOpsId = true;
             
             groupsFactory.getGroups().success(function (groups) {
                 $scope.groups = groups;
@@ -37,6 +38,7 @@
                 $scope.gReverse = false;
                 $scope.gSortGName = false;
                 $scope.gSortGNum = false;
+                $scope.gSortOpsId = false;
                 $scope.gSortBy = propName;
                 
                 switch (propName) {
@@ -45,6 +47,9 @@
                     break;
                 case "groupNum":
                     $scope.gSortGNum = true;
+                    break;
+                case "opsId":
+                    $scope.gSortOpsId = true;
                     break;
                 default:
                     break;

@@ -38,6 +38,7 @@ app.use(session({   key                 : 'app.sess',
                     store               : new MongoStore({ mongooseConnection: mongoose.connection }),
                     secret              : config.secrets.session,
                     resave              : false,
+                    cookie              : { maxAge : 1000 * 60 * 60},
                     saveUninitialized   : true }));
                     
 // configure session for passport

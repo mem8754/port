@@ -1,0 +1,44 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+    <h2><strong>User Profile for {{ currentUser.firstName }} {{ currentUser.lastName }}</strong></h2>
+    <div class="col-xs-12">&nbsp;</div>
+        <br/>
+        <table class="table table-condensed table-striped">
+            <tbody>
+                <tr>
+                    <td><strong>_id: </strong></td>
+                    <td>{{ currentUser._id }}</td>
+                </tr>
+                <tr>
+                    <td><strong>First Name: </strong></td>
+                    <td>{{ currentUser.firstName }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Last Name: </strong></td>
+                    <td>{{ currentUser.lastName }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Email: </strong></td>
+                    <td>{{ currentUser.email }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Admin: </strong></td>
+                    <td>{{ currentUser.admin }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Editor: </strong></td>
+                    <td>{{ currentUser.editor }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Group: </strong></td>
+                    <td>{{ groupName }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Group ID: </strong></td>
+                    <td>{{ currentUser.groupId }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
